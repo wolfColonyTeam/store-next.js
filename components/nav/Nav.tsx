@@ -37,7 +37,7 @@ export default function Nav() {
           <Link href="/login">Login</Link>
         </Button>
         <Button asChild>
-          <Link href="/sign">Sign Up</Link>
+          <Link href="/sign-up">Sign Up</Link>
         </Button>
       </div>
     </nav>
