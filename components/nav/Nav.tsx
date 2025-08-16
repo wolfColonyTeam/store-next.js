@@ -9,7 +9,7 @@ export default async function Nav() {
   console.log(session, " session");
 
   return (
-    <nav className="bg-slate-600 p-4 text-white flex justify-between">
+    <nav className="bg-grayish-teal p-4 text-white flex justify-between">
       <Links
         isAuthed={isAuthed}
         userName={session?.user?.name ?? null}
@@ -19,7 +19,6 @@ export default async function Nav() {
     </nav>
   );
 }
-
 
 // "use client";
 // import React from "react";
@@ -86,4 +85,3 @@ export default async function Nav() {
 //         </nav>
 //     );
 // }
-

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { logoutAction } from "@/actions";
+import clsx from "clsx";
 
 type Props = {
   isAuthed: boolean;
@@ -19,23 +20,44 @@ export default function Links({
   userEmail,
   userImage,
 }: Props) {
+  const navList = [
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "About",
+      href: "/about",
+    },
+    {
+      name: "Contacts",
+      href: "/contacts",
+    },
+  ];
   const pathname = usePathname();
 
   const isActive = (href: string) =>
-    `nav-link ${pathname === href ? "bg-blue-700" : ""}`;
+    `bg-grayish-teal border border-grass p-2 hover:bg-grey ${pathname === href ? "bg-grey hover:bg-grey" : ""}`;
 
   return (
     <>
       <div className="flex gap-2">
-        <Link className={isActive("/")} href="/">
-          Home
-        </Link>
-        <Link className={isActive("/about")} href="/about">
-          About
-        </Link>
-        <Link className={isActive("/contacts")} href="/contacts">
-          Contacts
-        </Link>
+        {navList.map((link: { name: string; href: string }) => {
+          return (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={clsx(
+                "bg-grayish-teal border border-grass p-2 hover:bg-grey",
+                {
+                  "bg-grey ": pathname === link.href,
+                },
+              )}
+            >
+              {link.name}
+            </Link>
+          );
+        })}
       </div>
 
       <div className="logi-logout flex gap-2 items-center">
@@ -55,15 +77,18 @@ export default function Links({
               <Image src={userImage} width={40} height={40} alt="Avatar" />
             )}
             <form action={logoutAction}>
-              <button type="submit" className="nav-link">
+              <button
+                type="submit"
+                className="bg-grayish-teal border border-grass p-2 hover:bg-grey cursor-pointer"
+              >
                 Logout
               </button>
             </form>
           </>
         ) : (
           <>
-            <Link className={isActive("/login")} href="/sign-in">
-              Sign In
+            <Link className={isActive("/login")} href="/login">
+              Login
             </Link>
             <Link className={isActive("/sign-up")} href="/sign-up">
               Sign Up

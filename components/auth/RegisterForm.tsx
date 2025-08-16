@@ -59,7 +59,7 @@ export const RegisterForm = () => {
         return;
       } else {
         toast.success("User created successfully");
-        router.push("/sign-in");
+        router.push("/login");
       }
     } catch (error: any) {
       setError(error);
@@ -115,8 +115,11 @@ export const RegisterForm = () => {
           className="form-input"
         />
       </div>
-      <button type="submit" disabled={isLoading} className="form-btn">
-        Sign Up
+      <button
+        type="submit"
+        disabled={isLoading}
+        className="form-btn bg-grass hover:bg-black-tree disabled:opacity-50"
+      >
         {isLoading ? "Signing up..." : "Sign Up"}
       </button>
     </form>

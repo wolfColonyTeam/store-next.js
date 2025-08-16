@@ -83,9 +83,9 @@ export const LoginForm = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="form-btn bg-orange-400 hover:bg-orange-500 disabled:opacity-50"
+          className="form-btn bg-grass hover:bg-black-tree disabled:opacity-50"
         >
-          {isLoading ? "Signing in..." : "Sign In with email and password"}
+          {isLoading ? "Logging in..." : "Log In with email and password"}
         </button>
       </form>
 

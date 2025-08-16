@@ -3,7 +3,7 @@
 import { signIn, signOut } from "@/auth";
 
 export const logoutAction = async () => {
-  await signOut({ redirectTo: "/sign-in" });
+  await signOut({ redirectTo: "/login" });
 };
 
 export const socialLogin = async (formData: FormData) => {

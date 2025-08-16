@@ -10,5 +10,5 @@ import { NextRequest } from "next/server";
 const { auth } = NextAuth(authConfig);
 export default auth(async function middleware(req: NextRequest) {
   // Your custom middleware logic goes here
-  console.log("middleware logic");
+  // console.log("middleware logic");
 });
