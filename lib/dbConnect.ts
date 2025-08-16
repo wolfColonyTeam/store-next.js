@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-export const runtime = "nodejs";
-
 export const dbConnect = async (): Promise<typeof mongoose> => {
   try {
     const connection = await mongoose.connect(String(process.env.MONGODB_URI));
@@ -9,6 +7,6 @@ export const dbConnect = async (): Promise<typeof mongoose> => {
     return connection;
   } catch (err) {
     console.error("❌ MongoDB connection error:", err);
-    throw err; // пробрасываем, чтобы обработать на уровне вызова
+    throw err;
   }
 };

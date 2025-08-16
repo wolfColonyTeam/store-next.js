@@ -1,8 +1,9 @@
-import { Schema, models, model } from "mongoose";
+import mongoose from "mongoose";
+
+const { Schema } = mongoose;
 
 const OrderSchema = new Schema(
   {
-    id: { type: Schema.Types.ObjectId },
     name: String,
     quantity: Number,
     totalPrice: Number,
@@ -12,27 +13,26 @@ const OrderSchema = new Schema(
 
 const UserSchema = new Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-
-    // пароль обязателен только для provider="credentials"
+    name: { type: String, required: true, trim: true },
+    email: { type: String, required: true, trim: true },
     password: { type: String, default: null },
-
     image: { type: String, default: null },
-
     provider: {
       type: String,
-      enum: ["credentials", "google"],
+      enum: ["credentials", "google", "github"],
       required: true,
       default: "credentials",
     },
-
     orders: [OrderSchema],
   },
   { timestamps: true },
 );
 
-// Разрешаем одинаковый email у разных провайдеров
+// unique email+provider
 UserSchema.index({ email: 1, provider: 1 }, { unique: true });
 
-export default models.User || model("User", UserSchema);
+// ✅ prevents from not existed  mongoose.models
+const existing = (mongoose.models && mongoose.models.User) || null;
+const User = existing || mongoose.model("User", UserSchema);
+
+export default User;

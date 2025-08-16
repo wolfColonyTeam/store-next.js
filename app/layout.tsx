@@ -3,8 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/nav/Nav";
 import Footer from "@/components/footer/Footer";
-import { dbConnect } from "@/lib/mongo";
 import React from "react";
+import { Toaster } from "sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,8 +27,6 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  await dbConnect();
-
   return (
     <html lang="en">
       <body
@@ -36,6 +34,7 @@ export default async function RootLayout({
       >
         <div className="min-h-screen flex flex-col items-stretch justify-between">
           <Nav />
+          <Toaster />
           <div className="p-3">{children}</div>
           <Footer />
         </div>

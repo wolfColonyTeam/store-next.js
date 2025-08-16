@@ -1,26 +1,14 @@
-import { CredentialsSignin, NextAuthConfig } from "next-auth";
+import { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
-import { getUserByEmail } from "@/data/users";
-import { use } from "react";
+import { dbConnect } from "@/lib/dbConnect";
+import User from "@/model/user.model";
+import { CustomError } from "@/lib/utils";
 
 export default {
   providers: [
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      allowDangerousEmailAccountLinking: true,
-      async profile(profile) {
-        return {
-          createdAt: new Date(Date.now()),
-          codes: [],
-          name: profile.name ? profile.name : "",
-          email: profile.email ? profile.email : profile.id,
-          image: profile.picture ?? null,
-          id: profile.id ? profile.id : "testid",
-        };
-      },
       authorization: {
         params: {
           prompt: "consent",
@@ -37,6 +25,7 @@ export default {
           prompt: "consent",
           access_type: "offline",
           response_type: "code",
+          scope: "read:user user:email", // for github issue not returning email
         },
       },
     }),
@@ -44,34 +33,83 @@ export default {
       credentials: {
         email: {},
         password: {},
+        provider: {},
       },
       authorize: async (credentials) => {
-        const email =
-          typeof credentials?.email === "string"
-            ? credentials.email.trim().toLowerCase()
-            : "";
-        const password =
-          typeof credentials?.password === "string" ? credentials.password : "";
+        await dbConnect();
 
-        if (!email || !password) {
-          throw new CredentialsSignin("Email and password are required");
-        }
+        console.log(credentials, " credentials server");
 
-        const user = getUserByEmail(credentials?.email);
+        const user = await User.findOne({
+          email: credentials?.email,
+          provider: credentials?.provider,
+        });
 
-        if (!user?.password) {
-          // либо null (даст generic сообщение), либо конкретно:
-          throw new CredentialsSignin("Invalid email or password");
-        }
+        if (!user) throw new CustomError("Invalid credentials"); //no user found
 
-        const ok = password === user.password;
-        if (!ok) {
-          throw new CredentialsSignin("Invalid email or password");
-        }
+        // TODO: replace with bcrypt.compare(...)
+        const isValidPassword = credentials?.password === user.password;
 
-        // success
+        if (!isValidPassword) throw new CustomError("Invalid credentials");
         return user;
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user, account, profile }) {
+      // for OAuth-providers one single branch
+      console.log(
+        "provider is ",
+        account?.provider,
+        user,
+        " user ",
+        profile,
+        " profile ",
+        account,
+        " account ",
+      );
+      if (account?.provider === "google" || account?.provider === "github") {
+        await dbConnect();
+
+        const provider = account.provider as "google" | "github";
+        const email = (profile as any)?.email || (user as any)?.email || null;
+        if (!email) {
+          throw new Error("Email should be provided"); // return exit creating user
+        }
+
+        const name =
+          (profile as any)?.name ||
+          (provider === "github" ? (profile as any)?.login : null) ||
+          (user as any)?.name ||
+          (email.includes("@") ? email.split("@")[0] : "User");
+
+        const image =
+          (profile as any)?.picture ??
+          (profile as any)?.avatar_url ??
+          (user as any)?.image ??
+          null;
+
+        // create user
+        let dbUser = await User.findOne({ email, provider });
+        if (!dbUser) {
+          dbUser = await User.create({
+            name,
+            email,
+            password: null,
+            image,
+            provider,
+          });
+        }
+        (user as any).id = dbUser.id;
+        return true;
+      }
+
+      // credentials: id already exist from  authorize (in case if it does not)
+      if (account?.provider === "credentials") {
+        (user as any).id = (user as any).id || (user as any)?._id?.toString?.();
+      }
+
+      return true;
+    },
+  },
 } satisfies NextAuthConfig;

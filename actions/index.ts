@@ -12,21 +12,10 @@ export const socialLogin = async (formData: FormData) => {
   console.log(action, " action");
 };
 
-export async function credentialLogin(formData: FormData) {
-  const email = String(formData.get("email") ?? "")
-    .trim()
-    .toLowerCase();
-  const password = String(formData.get("password") ?? "");
+export async function createUserCredentials(formData: FormData) {
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const password = formData.get("password");
 
-  console.log(email, " email", password, " password");
-
-  // без try/catch: signIn обычно не бросает при неверных данных
-  const res = await signIn("credentials", { email, password, redirect: false });
-  console.log(res, " res server");
-
-  if (!res) return { ok: false, message: "No response from auth server" };
-  if (!res.ok)
-    return { ok: false, message: res.error ?? "Invalid credentials" };
-
-  return { ok: true };
+  console.log(name, email, password, " name email pasword");
 }
