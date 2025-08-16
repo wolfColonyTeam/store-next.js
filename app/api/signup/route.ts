@@ -17,7 +17,7 @@ export const POST = async (req: NextRequest) => {
       !email.trim() ||
       password.length < 6
     ) {
-      return NextResponse.json({ message: "Invalid input" }, { status: 400 });
+      return NextResponse.json({ message: "Invalid input", status: 400 });
     }
 
     // check if exist user in db email + provider=credentials

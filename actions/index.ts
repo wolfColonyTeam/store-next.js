@@ -11,11 +11,3 @@ export const socialLogin = async (formData: FormData) => {
   await signIn(String(action), { redirectTo: "/" });
   console.log(action, " action");
 };
-
-export async function createUserCredentials(formData: FormData) {
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const password = formData.get("password");
-
-  console.log(name, email, password, " name email pasword");
-}
