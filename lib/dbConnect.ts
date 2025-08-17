@@ -1,12 +1,40 @@
 import mongoose from "mongoose";
 
-export const dbConnect = async (): Promise<typeof mongoose> => {
+let isConnected = false;
+
+const connectDb = async () => {
+  if (isConnected) {
+    console.log("✅ Already connected to mongodb");
+    return;
+  }
+
+  if (!process.env.MONGODB_URI) {
+    throw new Error("❌ MongoDb url env is not defined");
+  }
+
   try {
-    const connection = await mongoose.connect(String(process.env.MONGODB_URI));
-    console.log("✅ MongoDB connected successfully");
-    return connection;
-  } catch (err) {
-    console.error("❌ MongoDB connection error:", err);
-    throw err;
+    return await mongoose.connect(process.env.MONGODB_URI, {
+      bufferCommands: false,
+    });
+  } catch (error) {
+    console.log("❌ Error connecting to mongodb", error);
+    throw error;
   }
 };
+
+mongoose.connection.on("connected", () => {
+  isConnected = true;
+  console.log("✅ Connected to mongoDb");
+});
+
+mongoose.connection.on("disconnected", () => {
+  isConnected = false;
+  console.log("❌ Disconnected from mongoDb");
+});
+
+mongoose.connection.on("error", (error) => {
+  isConnected = false;
+  console.log("❌ Mongose connection error", error);
+});
+
+export default connectDb;
