@@ -2,7 +2,7 @@ import { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
-import { dbConnect } from "@/lib/dbConnect";
+import connectDb from "@/lib/dbConnect";
 import User from "@/model/user.model";
 import { CustomError } from "@/lib/utils";
 
@@ -36,7 +36,7 @@ export default {
         provider: {},
       },
       authorize: async (credentials) => {
-        await dbConnect();
+        await connectDb();
 
         console.log(credentials, " credentials server");
 
@@ -69,7 +69,7 @@ export default {
         " account ",
       );
       if (account?.provider === "google" || account?.provider === "github") {
-        await dbConnect();
+        await connectDb();
 
         const provider = account.provider as "google" | "github";
         const email = (profile as any)?.email || (user as any)?.email || null;
