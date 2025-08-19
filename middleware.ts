@@ -38,3 +38,8 @@ export async function middleware(req: NextRequest) {
 
   return NextResponse.next();
 }
+
+//what we protect if user not logged in
+export const config = {
+  matcher: ["/dashboard/:path*", "/account/:path*", "/orders/:path*"],
+};
