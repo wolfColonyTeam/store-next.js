@@ -6,6 +6,9 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { logoutAction } from "@/actions";
 import clsx from "clsx";
+import Admin from "@/app/admin/page";
+import { useSession} from "next-auth/react";
+
 
 type Props = {
   isAuthed: boolean;
@@ -14,12 +17,9 @@ type Props = {
   userImage?: string | null;
 };
 
-export default function Links({
-  isAuthed,
-  userName,
-  userEmail,
-  userImage,
-}: Props) {
+export default function Links({isAuthed, userName, userEmail, userImage}: Props) {
+  const pathname = usePathname();
+  const {data: session} = useSession();
   const navList = [
     {
       name: "Home",
@@ -34,7 +34,6 @@ export default function Links({
       href: "/contacts",
     },
   ];
-  const pathname = usePathname();
 
   const isActive = (href: string) =>
     `bg-grayish-teal border border-grass p-2 hover:bg-grey ${pathname === href ? "bg-grey hover:bg-grey" : ""}`;
@@ -48,7 +47,7 @@ export default function Links({
               key={link.name}
               href={link.href}
               className={clsx(
-                "bg-grayish-teal border border-grass p-2 hover:bg-grey",
+                "bg-grayish-teal border border-grass p-2 hover:bg-grey", //clsx - for conditional use of classes
                 {
                   "bg-grey ": pathname === link.href,
                 },
@@ -59,6 +58,17 @@ export default function Links({
           );
         })}
       </div>
+
+      {isAuthed && userEmail && (
+          <>
+            {session?.user?.role === "admin" && (
+                <Link href="/admin" className={clsx(
+                    "bg-grayish-teal border border-grass p-2 hover:bg-grey", {"bg-grey ": pathname === '/admin'})}>
+                  <Admin />
+                </Link>
+            )}
+          </>
+      )}
 
       <div className="logi-logout flex gap-2 items-center">
         {isAuthed ? (
