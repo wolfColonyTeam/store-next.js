@@ -1,5 +1,6 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { getToken } from "next-auth/jwt";
 
 // possible names of COOKIES in Auth.js / NextAuth
 const SESSION_COOKIES = [
@@ -9,7 +10,7 @@ const SESSION_COOKIES = [
   "__Secure-next-auth.session-token",
 ];
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // what routes we should protect for example now
@@ -24,10 +25,16 @@ export function middleware(req: NextRequest) {
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
+
+  const token = await getToken({ req, secret: process.env.AUTH_SECRET });
+  const url = req.nextUrl;
+  console.log("token", token);
+
+  if (url.pathname.startsWith("/admin")) {
+    if (!token || token.role !== "admin") {
+      return NextResponse.redirect(new URL("/login", req.url));
+    }
+  }
+
   return NextResponse.next();
 }
-
-//what we protect if user not logged in
-export const config = {
-  matcher: ["/dashboard/:path*", "/account/:path*", "/orders/:path*"],
-};

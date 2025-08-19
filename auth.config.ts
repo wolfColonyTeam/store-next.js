@@ -1,4 +1,5 @@
 import { NextAuthConfig } from "next-auth";
+import { Session, Token, User as UserI } from "next-auth";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
@@ -35,6 +36,7 @@ export default {
         password: {},
         provider: {},
       },
+
       authorize: async (credentials) => {
         await connectDb();
 
@@ -51,10 +53,12 @@ export default {
         const isValidPassword = credentials?.password === user.password;
 
         if (!isValidPassword) throw new CustomError("Invalid credentials");
-        return user;
+
+        return { id: user._id.toString(), email: user.email, role: user.role };
       },
     }),
   ],
+
   callbacks: {
     async signIn({ user, account, profile }) {
       // for OAuth-providers one single branch
@@ -111,5 +115,26 @@ export default {
 
       return true;
     },
-  },
-} satisfies NextAuthConfig;
+
+    async jwt({token, user}: {token:Token, user:UserI}) {
+      if (user) {
+        token.role = user.role; //  add role to token
+        token.image = user.image;
+        token.name = user.name;
+      }
+      return token;
+    },
+
+    async session({session, token}: { session: Session; token: Token }) { //when useSession() is calling
+      session.user = {      // add role to session
+        id: token.sub,
+        email: session.user?.email || "",
+        role: token.role,
+        image: token.image,
+        name: token.name,
+      };
+      return session;
+    },
+  }
+};
+

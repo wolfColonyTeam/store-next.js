@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { logoutAction } from "@/actions";
 import clsx from "clsx";
+import Admin from "@/components/auth/Admin";
 
 type Props = {
   isAuthed: boolean;
@@ -14,12 +15,8 @@ type Props = {
   userImage?: string | null;
 };
 
-export default function Links({
-  isAuthed,
-  userName,
-  userEmail,
-  userImage,
-}: Props) {
+export default function Links({isAuthed, userName, userEmail, userImage,}: Props) {
+
   const navList = [
     {
       name: "Home",
@@ -48,7 +45,7 @@ export default function Links({
               key={link.name}
               href={link.href}
               className={clsx(
-                "bg-grayish-teal border border-grass p-2 hover:bg-grey",
+                "bg-grayish-teal border border-grass p-2 hover:bg-grey", //clsx - for conditional use of classes
                 {
                   "bg-grey ": pathname === link.href,
                 },
@@ -59,6 +56,8 @@ export default function Links({
           );
         })}
       </div>
+
+      <Admin />
 
       <div className="logi-logout flex gap-2 items-center">
         {isAuthed ? (
