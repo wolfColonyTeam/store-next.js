@@ -1,7 +1,6 @@
 import React from "react";
 import Links from "@/components/nav/Links";
 import { auth } from "@/auth";
-import { SessionProvider } from "next-auth/react";
 
 export default async function Nav() {
   const session = await auth();
@@ -10,7 +9,6 @@ export default async function Nav() {
   console.log(session, " session");
 
   return (
-    <SessionProvider>
       <nav className="bg-grayish-teal p-4 text-white flex justify-between">
         <Links
           isAuthed={isAuthed}
@@ -19,6 +17,5 @@ export default async function Nav() {
           userImage={session?.user?.image ?? null}
         />
       </nav>
-    </SessionProvider>
   );
 }
