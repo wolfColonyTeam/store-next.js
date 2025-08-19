@@ -33,6 +33,10 @@ export default function Links({
       name: "Contacts",
       href: "/contacts",
     },
+    {
+      name: "Admin Dashboard",
+      href: "/dashboard-1",
+    },
   ];
   const pathname = usePathname();
 

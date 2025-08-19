@@ -2,38 +2,42 @@
 
 /*Style Guide Store*/
 @theme colors {
-    --color-dark-green: #252b23;
-    --color-grass: #374135;
-    --color-grayish-teal: #687768;
-    --color-olive: #4C6A34;
-    --color-lime: #A0BD90;
-    --color-light-mint: #EBF0E4;
+  --color-dark-green: #252b23;
+  --color-grass: #374135;
+  --color-grayish-teal: #687768;
+  --color-olive: #4c6a34;
+  --color-lime: #a0bd90;
+  --color-light-mint: #ebf0e4;
 
-    --color-black: #242F5;
-    --color-black-tree: #383536eb;
-    --color-grey: #4D4D4D;
-    --color-light-grey: #B0B0B0;
-    --color-white: #FFFFF3;
+  --color-black: #242f55;
+  --color-black-tree: #383536eb;
+  --color-grey: #4d4d4d;
+  --color-light-grey: #b0b0b0;
+  --color-white: #fffff3;
 }
 
 @theme fonts {
-    --font-rufina: "Rufina", sans-serif;
-    --font-lato: "Lato", sans-serif;
+  --font-rufina: "Rufina", sans-serif;
+  --font-lato: "Lato", sans-serif;
 
-    --text-hero-title: 148px;
-    --text-heading-1: 108px;
-    --text-heading-2: 88px;
-    --text-heading-3: 68px;
-    --text-heading-4: 48px;
+  --text-hero-title: 148px;
+  --text-heading-1: 108px;
+  --text-heading-2: 88px;
+  --text-heading-3: 68px;
+  --text-heading-4: 48px;
 
-    --text-body-large: 66px;
-    --text-body: 24px;
-    --text-body-medium: 22px;
-    --text-secondary-text: 18px;
-    --text-small-text: 16px;
+  --text-body-large: 66px;
+  --text-body: 24px;
+  --text-body-medium: 22px;
+  --text-secondary-text: 18px;
+  --text-small-text: 16px;
 
-    --font-weight-400: 400;
-    --font-weight-700: 700;
+  --font-weight-400: 400;
+  --font-weight-700: 700;
+}
+
+:root {
+  --radius: 14px;
 }
 
 @layer components {
@@ -45,15 +49,22 @@
     @apply w-full cursor-pointer bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 transition;
   }
 
-    .form-input {
-        @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition;
-    }
+  .form-input {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition;
+  }
 
-    .form-label {
-        @apply block text-sm font-medium text-gray-700 mb-1;
-    }
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
 
-    .text-basic {
-        @apply font-rufina mb-1 text-black font-400 text-body;
-    }
+  .text-basic {
+    @apply font-rufina mb-1 text-black font-400 text-body;
+  }
+
+  .card {
+    @apply rounded-2xl shadow-sm p-5 bg-[--color-light-mint] border border-[--color-lime]/40;
+  }
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border;
+  }
 }

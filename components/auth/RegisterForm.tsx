@@ -111,7 +111,7 @@ export const RegisterForm = () => {
           id="password"
           name="password"
           type="password"
-          placeholder="••••••••"
+          placeholder="Min 6 characters"
           className="form-input"
         />
       </div>
