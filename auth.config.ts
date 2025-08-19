@@ -1,5 +1,4 @@
 import { NextAuthConfig } from "next-auth";
-import { Session, Token, User as UserI } from "next-auth";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
@@ -40,7 +39,7 @@ export default {
       authorize: async (credentials) => {
         await connectDb();
 
-        console.log(credentials, " credentials server");
+        console.log(credentials, " credentials authorize server");
 
         const user = await User.findOne({
           email: credentials?.email,
@@ -62,8 +61,7 @@ export default {
   callbacks: {
     async signIn({ user, account, profile }) {
       // for OAuth-providers one single branch
-      console.log("provider is ", account?.provider, user, " user ", profile, " profile ", account, " account ",);
-
+      console.log(" callbacks signIn server");
       if (account?.provider === "google" || account?.provider === "github") {
         await connectDb();
 
@@ -84,9 +82,10 @@ export default {
         // create user
         let dbUser = await User.findOne({ email, provider });
         if (!dbUser) {
-          dbUser = await User.create({name, email, password: null, image, provider,});
+          dbUser = await User.create({name, email, image, provider,});
         }
         (user as any).id = dbUser.id;
+        (user as any).role = dbUser.role;
         return true;
       }
 
@@ -98,25 +97,20 @@ export default {
       return true;
     },
 
-    async jwt({token, user}: {token:Token, user:UserI}) {
+    async jwt({token, user}) {
+      console.log(" jwt server");
       if (user) {
-        token.role = user.role; //  add role to token
-        token.image = user.image;
-        token.name = user.name;
+        // then get role from authorize then callbacks signIn -> user
+        token = {...token, role: user.role}
       }
       return token;
     },
 
-    async session({session, token}: { session: Session; token: Token }) { //when useSession() is calling
-      session.user = {      // add role to session
-        id: token.sub,
-        email: session.user?.email || "",
-        role: token.role,
-        image: token.image,
-        name: token.name,
-      };
+    async session({session, token}) {
+      console.log(" session server");
+      session.user = {...session.user, id: token.sub as string, role: token.role}
       return session;
     },
   }
-};
+}  satisfies NextAuthConfig;
 

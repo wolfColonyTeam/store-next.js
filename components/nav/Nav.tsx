@@ -6,7 +6,7 @@ export default async function Nav() {
   const session = await auth();
   const isAuthed = Boolean(session?.user);
 
-  console.log(session, " session");
+  console.log(session, " session 212121");
 
   return (
       <nav className="bg-grayish-teal p-4 text-white flex justify-between">
