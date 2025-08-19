@@ -54,7 +54,7 @@ export default {
 
         if (!isValidPassword) throw new CustomError("Invalid credentials");
 
-        return { id: user._id.toString(), email: user.email, role: user.role };
+        return user;
       },
     }),
   ],
@@ -62,16 +62,8 @@ export default {
   callbacks: {
     async signIn({ user, account, profile }) {
       // for OAuth-providers one single branch
-      console.log(
-        "provider is ",
-        account?.provider,
-        user,
-        " user ",
-        profile,
-        " profile ",
-        account,
-        " account ",
-      );
+      console.log("provider is ", account?.provider, user, " user ", profile, " profile ", account, " account ",);
+
       if (account?.provider === "google" || account?.provider === "github") {
         await connectDb();
 
@@ -87,22 +79,12 @@ export default {
           (user as any)?.name ||
           (email.includes("@") ? email.split("@")[0] : "User");
 
-        const image =
-          (profile as any)?.picture ??
-          (profile as any)?.avatar_url ??
-          (user as any)?.image ??
-          null;
+        const image = (profile as any)?.picture ?? (profile as any)?.avatar_url ?? (user as any)?.image ?? null;
 
         // create user
         let dbUser = await User.findOne({ email, provider });
         if (!dbUser) {
-          dbUser = await User.create({
-            name,
-            email,
-            password: null,
-            image,
-            provider,
-          });
+          dbUser = await User.create({name, email, password: null, image, provider,});
         }
         (user as any).id = dbUser.id;
         return true;
