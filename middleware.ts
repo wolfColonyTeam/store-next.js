@@ -32,9 +32,14 @@ export async function middleware(req: NextRequest) {
 
   if (url.pathname.startsWith("/admin")) {
     if (!token || token.role !== "admin") {
-      return NextResponse.redirect(new URL("/login", req.url));
+      return NextResponse.redirect(new URL("/", req.url));
     }
   }
 
   return NextResponse.next();
 }
+
+//what we protect if user not logged in
+export const config = {
+  matcher: ["/dashboard/:path*", "/account/:path*", "/orders/:path*"],
+};
