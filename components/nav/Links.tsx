@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { logoutAction } from "@/actions";
 import clsx from "clsx";
-import Admin from "@/components/auth/Admin";
+import Admin from "@/components/admin/Admin";
 
 type Props = {
   isAuthed: boolean;
