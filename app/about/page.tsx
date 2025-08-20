@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Page() {
-  return <div>About</div>;
+  return <div className={"text-basic"}>About</div>;
 }

@@ -33,6 +33,10 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
       name: "Contacts",
       href: "/contacts",
     },
+    {
+      name: "Admin Dashboard",
+      href: "/dashboard-1",
+    },
   ];
 
   const isActive = (href: string) =>
