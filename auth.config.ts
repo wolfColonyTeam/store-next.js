@@ -35,10 +35,11 @@ export default {
         password: {},
         provider: {},
       },
+
       authorize: async (credentials) => {
         await connectDb();
 
-        console.log(credentials, " credentials server");
+        console.log(credentials, " credentials authorize server");
 
         const user = await User.findOne({
           email: credentials?.email,
@@ -51,23 +52,16 @@ export default {
         const isValidPassword = credentials?.password === user.password;
 
         if (!isValidPassword) throw new CustomError("Invalid credentials");
+
         return user;
       },
     }),
   ],
+
   callbacks: {
     async signIn({ user, account, profile }) {
       // for OAuth-providers one single branch
-      console.log(
-        "provider is ",
-        account?.provider,
-        user,
-        " user ",
-        profile,
-        " profile ",
-        account,
-        " account ",
-      );
+      console.log(" callbacks signIn server");
       if (account?.provider === "google" || account?.provider === "github") {
         await connectDb();
 
@@ -83,24 +77,15 @@ export default {
           (user as any)?.name ||
           (email.includes("@") ? email.split("@")[0] : "User");
 
-        const image =
-          (profile as any)?.picture ??
-          (profile as any)?.avatar_url ??
-          (user as any)?.image ??
-          null;
+        const image = (profile as any)?.picture ?? (profile as any)?.avatar_url ?? (user as any)?.image ?? null;
 
         // create user
         let dbUser = await User.findOne({ email, provider });
         if (!dbUser) {
-          dbUser = await User.create({
-            name,
-            email,
-            password: null,
-            image,
-            provider,
-          });
+          dbUser = await User.create({name, email, image, provider,});
         }
         (user as any).id = dbUser.id;
+        (user as any).role = dbUser.role;
         return true;
       }
 
@@ -111,5 +96,21 @@ export default {
 
       return true;
     },
-  },
-} satisfies NextAuthConfig;
+
+    async jwt({token, user}) {
+      console.log(" jwt server");
+      if (user) {
+        // then get role from authorize then callbacks signIn -> user
+        token = {...token, role: user.role}
+      }
+      return token;
+    },
+
+    async session({session, token}) {
+      console.log(" session server");
+      session.user = {...session.user, id: token.sub as string, role: token.role}
+      return session;
+    },
+  }
+}  satisfies NextAuthConfig;
+

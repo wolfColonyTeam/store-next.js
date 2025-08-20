@@ -5,6 +5,7 @@ import Nav from "@/components/nav/Nav";
 import Footer from "@/components/footer/Footer";
 import React from "react";
 import { Toaster } from "sonner";
+import {SessionProvider} from "next-auth/react";
 
 export const metadata: Metadata = {
   title: "Store of ideas",
@@ -18,17 +19,17 @@ export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${lato.className} ${geistSans.className} antialiased min-h-screen`}
-      >
-        <div className="min-h-screen flex flex-col items-stretch justify-between">
-          <Nav />
-          <Toaster />
-          <div className="p-3">{children}</div>
-          <Footer />
-        </div>
+      <html lang="en">
+      <body className={`${lato.className} ${geistSans.className} antialiased min-h-screen`}>
+      <div className="min-h-screen flex flex-col items-stretch justify-between">
+          <SessionProvider>
+              <Nav/>
+              <Toaster/>
+              <div className="p-3">{children}</div>
+              <Footer/>
+          </SessionProvider>
+      </div>
       </body>
-    </html>
+      </html>
   );
 }
