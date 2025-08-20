@@ -14,7 +14,7 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // what routes we should protect for example now
-  const protectedPaths = ["/dashboard", "/account", "/orders"];
+  const protectedPaths = ["/admin/*", "/account", "/orders"];
   const isProtected = protectedPaths.some((p) => pathname.startsWith(p));
 
   // The "at least there is a session cookie" flag
@@ -41,5 +41,5 @@ export async function middleware(req: NextRequest) {
 
 //what we protect if user not logged in
 export const config = {
-  matcher: ["/dashboard/:path*", "/account/:path*", "/orders/:path*"],
+  matcher: ["/admin/:path*", "/account/:path*", "/orders/:path*"],
 };

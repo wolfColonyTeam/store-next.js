@@ -6,7 +6,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { logoutAction } from "@/actions";
 import clsx from "clsx";
-import Admin from "@/app/admin/page";
 import { useSession} from "next-auth/react";
 
 
@@ -32,10 +31,6 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
     {
       name: "Contacts",
       href: "/contacts",
-    },
-    {
-      name: "Admin Dashboard",
-      href: "/dashboard-1",
     },
   ];
 
@@ -68,7 +63,7 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
             {session?.user?.role === "admin" && (
                 <Link href="/admin" className={clsx(
                     "bg-grayish-teal border border-grass p-2 hover:bg-grey", {"bg-grey ": pathname === '/admin'})}>
-                  <Admin />
+                  Admin Panel
                 </Link>
             )}
           </>

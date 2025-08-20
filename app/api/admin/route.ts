@@ -3,7 +3,7 @@ import { auth } from "@/auth";
 export async function POST(req: Request) { //for admin operation - API protection
   const session = await auth();    //reading session cookie user
 
-  if (!session || session.user.role !== "admin") {
+  if (!session || session.user?.role !== "admin") {
     return new Response("Forbidden", { status: 403 });
   }
 
