@@ -77,7 +77,7 @@ export default async function RootLayout({children,}: Readonly<{ children: React
             </aside>
 
             {/* Main */}
-            <div className="p-3">{children}</div>
+            <div className="">{children}</div>
           </div>
 
           {/* Modal skeleton */}
