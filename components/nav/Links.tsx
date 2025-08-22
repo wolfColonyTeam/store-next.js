@@ -46,11 +46,7 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
               href={link.href}
               className={clsx(
                 "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl", //clsx - for conditional use of classes
-                {
-                  "bg-grey ": pathname === link.href,
-                },
-              )}
-            >
+                {"bg-grey ": pathname === link.href})}>
               {link.name}
             </Link>
           );
@@ -61,7 +57,7 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
           <>
             {session?.user?.role === "admin" && (
                 <Link href="/admin" className={clsx(
-                    "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl", {"bg-grey ": pathname === '/admin'})}>
+                    "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl", {"bg-grey ": pathname.startsWith("/admin")})}>
                   Admin Panel
                 </Link>
             )}

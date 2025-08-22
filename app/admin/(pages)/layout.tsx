@@ -24,9 +24,6 @@ export default async function RootLayout({children,}: Readonly<{ children: React
                   <h1 className="text-lg font-semibold text-[--color-olive]">
                     Admin Panel
                   </h1>
-                  <p className="text-xs text-[--color-grayish-teal]">
-                    Управление интернет-магазином
-                  </p>
                 </div>
               </div>
 
