@@ -8,7 +8,6 @@ import { logoutAction } from "@/actions";
 import clsx from "clsx";
 import { useSession} from "next-auth/react";
 
-
 type Props = {
   isAuthed: boolean;
   userName?: string | null;
@@ -35,7 +34,7 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
   ];
 
   const isActive = (href: string) =>
-    `bg-grayish-teal border border-grass p-2 hover:bg-grey ${pathname === href ? "bg-grey hover:bg-grey" : ""}`;
+    `bg-grayish-teal border border-white p-2 hover:bg-grey ${pathname === href ? "bg-grey hover:bg-grey" : ""}`;
 
   return (
     <>
@@ -46,7 +45,7 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
               key={link.name}
               href={link.href}
               className={clsx(
-                "bg-grayish-teal border border-grass p-2 hover:bg-grey", //clsx - for conditional use of classes
+                "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl", //clsx - for conditional use of classes
                 {
                   "bg-grey ": pathname === link.href,
                 },
@@ -62,7 +61,7 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
           <>
             {session?.user?.role === "admin" && (
                 <Link href="/admin" className={clsx(
-                    "bg-grayish-teal border border-grass p-2 hover:bg-grey", {"bg-grey ": pathname === '/admin'})}>
+                    "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl", {"bg-grey ": pathname === '/admin'})}>
                   Admin Panel
                 </Link>
             )}
@@ -88,7 +87,7 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
             <form action={logoutAction}>
               <button
                 type="submit"
-                className="bg-grayish-teal border border-grass p-2 hover:bg-grey cursor-pointer"
+                className="bg-grayish-teal border border-white p-2 hover:bg-grey cursor-pointer rounded-xl"
               >
                 Logout
               </button>
