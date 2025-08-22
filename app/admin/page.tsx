@@ -1,14 +1,4 @@
-import {
-  Search,
-  ShieldBan,
-  ShieldCheck,
-  Trash2,
-  Users,
-  Package,
-  DollarSign,
-  LogOut,
-  SquareStar
-} from "lucide-react";
+import {Search, ShieldBan, ShieldCheck, Trash2, Users, Package, DollarSign, SquareStar} from "lucide-react";
 import { MOCK_USERS } from "@/app/admin/data";
 import KpiCard from "@/app/admin/KpiCard";
 import Th from "./Th";
@@ -23,30 +13,19 @@ export default function AdminDashboardPage() {
       <header className="sticky top-0 z-40 border-b border-[--color-lime]/40 backdrop-blur bg-[--color-light-mint]/80">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-lg bg-[--color-olive] grid place-items-center text-[--color-white] font-bold">
-              A
-            </div>
-            <div>
               <h1 className="text-lg font-semibold text-[--color-olive]">
                 Admin Panel
               </h1>
-              <p className="text-xs text-[--color-grayish-teal]">
-                Управление интернет-магазином
-              </p>
-            </div>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
             <div className="relative">
               <input
                 className="h-10 w-72 rounded-xl bg-white/70 placeholder-[--color-light-grey] pl-10 pr-3 text-sm outline-none ring-1 ring-[--color-lime]/50 focus:ring-2 focus:ring-[--color-olive]"
-                placeholder="Поиск пользователей / заказов…"
+                placeholder="Search"
               />
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[--color-grayish-teal]" />
             </div>
-            <button className="nav-link flex items-center gap-2">
-              <LogOut className="h-4 w-4" /> Выйти
-            </button>
           </div>
         </div>
       </header>
@@ -206,7 +185,6 @@ export default function AdminDashboardPage() {
         </main>
       </div>
 
-      {/* Modal skeleton (скрыта, подключи состояние при необходимости) */}
       <ConfirmModal />
     </div>
   );
