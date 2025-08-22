@@ -12,5 +12,5 @@ export const rufina = Rufina({
 
 export const lato = Lato({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "700"]
 });

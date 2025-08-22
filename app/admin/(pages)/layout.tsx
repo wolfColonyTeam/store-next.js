@@ -24,9 +24,6 @@ export default async function RootLayout({children,}: Readonly<{ children: React
                   <h1 className="text-lg font-semibold text-[--color-olive]">
                     Admin Panel
                   </h1>
-                  <p className="text-xs text-[--color-grayish-teal]">
-                    Управление интернет-магазином
-                  </p>
                 </div>
               </div>
 
@@ -77,7 +74,7 @@ export default async function RootLayout({children,}: Readonly<{ children: React
             </aside>
 
             {/* Main */}
-            <div className="p-3">{children}</div>
+              {children}
           </div>
 
           {/* Modal skeleton */}

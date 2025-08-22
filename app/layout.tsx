@@ -15,17 +15,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
   return (
       <html lang="en">
-      <body className={`${lato.className} ${geistSans.className} antialiased min-h-screen`}>
+      <body className={`${lato.className} ${geistSans.className} antialiased min-h-screen text-black bg-basic-white font-400`}>
       <div className="min-h-screen flex flex-col items-stretch justify-between">
           <SessionProvider>
               <Nav/>
               <Toaster/>
-              <div className="p-3">{children}</div>
+              {children}
               <Footer/>
           </SessionProvider>
       </div>
