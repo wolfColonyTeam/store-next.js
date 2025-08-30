@@ -24,13 +24,18 @@ const categories = [
   {name: "Books & Learning", tag: "books", description: "Programming and design books"},
 ];
 
-async function seed() {
+async function seedCategories() {
+
+  if (!process.env.MONGODB_URI) {
+    throw new Error("MONGODB_URI not set in environment variables");
+  }
+
   try {
     await mongoose.connect(process.env.MONGODB_URI);
 
     console.log("🌱 Connected to MongoDB");
 
-    await Category.deleteMany({});
+    await Category.deleteMany({});                  //directly access the database
     console.log("🗑️ Old categories removed");
 
     await Category.insertMany(categories);
@@ -43,4 +48,4 @@ async function seed() {
   }
 }
 
-seed();
+seedCategories();
