@@ -1,10 +1,10 @@
 import React, {Suspense} from 'react';
-import Categories from "@/components/categories/Categories";
+import CategoriesList from "@/components/categories/CategoriesList";
 
 function Page() {
     return (
         <Suspense fallback={'Loading categories...'}>
-            <Categories/>
+            <CategoriesList/>
         </Suspense>
     );
 }
