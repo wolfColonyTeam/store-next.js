@@ -15,11 +15,12 @@ export const socialLogin = async (formData: FormData) => {
 };
 
 export const createCategoryAction = async (formData: FormData) => {
+  await connectDb();
+
   const name = formData.get("name");
   const description = formData.get("description");
   const tag = formData.get("tag");
 
-  await connectDb();
   const newCategory = await Category.create({name, tag, description})
 
   console.log('New category created:', newCategory);

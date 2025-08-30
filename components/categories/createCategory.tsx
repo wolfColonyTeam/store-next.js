@@ -53,6 +53,7 @@ function CreateCategory() {
                             name={item.name}
                             placeholder={item.placeholder}
                             className={item.className}
+                            required
                         />
                     </React.Fragment>
                 ))}
