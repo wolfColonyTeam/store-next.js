@@ -35,7 +35,7 @@ export const LoginForm = () => {
 
     if (response.error) {
       setError(
-        response.error === "CredentialsSignin"
+        response.error === "Credentials Sign in"
           ? "Invalid credentials"
           : "Something went wrong",
       );

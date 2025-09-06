@@ -40,7 +40,7 @@ export default function Links({
 
   console.log(isAuthed, " isAuthed");
   const isActive = (href: string) =>
-    `bg-grayish-teal border border-white p-2 hover:bg-grey ${pathname === href ? "bg-grey hover:bg-grey" : ""}`;
+    `"bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl ${pathname === href ? "bg-grey" : ""}`;
 
   return (
     <>
@@ -63,7 +63,7 @@ export default function Links({
 
       {isAuthed && userEmail && (
         <>
-          {session?.user?.role === "admin" && (
+          {session?.user?.role === "ADMIN" && (
             <Link
               href="/admin"
               className={clsx(

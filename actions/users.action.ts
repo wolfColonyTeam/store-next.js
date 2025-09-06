@@ -1,23 +1,20 @@
 "use server";
 
 import prisma from "@/lib/prisma";
-import { CustomError } from "@/lib/utils";
 
-export const createUser = async (data: {
+type CreateUserType = {
   email: string;
   password: string;
   name: string;
-}) => {
+};
+
+export const createUser = async (data: CreateUserType) => {
   console.log(data, " data123");
   try {
     const { name, email, password } = data;
-
-    // Базовая валидация (минимум, без зависимостей)
-    if (!name.trim() || !email.trim() || password.length < 6) {
+    if (!name.trim() || !email.trim() || password.length < 4) {
       return { message: "Invalid input", status: 400 };
     }
-
-    // check if exist user in db email + provider=credentials
     const existing = await prisma.user.findFirst({
       where: {
         email: email.trim(),
@@ -27,11 +24,7 @@ export const createUser = async (data: {
     console.log(existing, " existing123");
 
     if (existing) {
-      return {
-        message: "User already exists",
-        status: 409,
-        success: false,
-      };
+      return { message: "User already exists", status: 409, success: false };
     }
 
     // TODO hash password
@@ -48,12 +41,11 @@ export const createUser = async (data: {
 
     return {
       message: "User created",
-      userId: created.id.toString(),
+      userId: created.id,
       status: 201,
       success: true,
     };
   } catch (err: any) {
-    // catch duplicate (if there is unique by email+provider)
     if (err?.code === 11000) {
       return { message: "User already exists", status: 409, success: false };
     }
