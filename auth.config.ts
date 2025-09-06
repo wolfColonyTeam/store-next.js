@@ -3,8 +3,8 @@ import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
 import connectDb from "@/lib/dbConnect";
-import User from "@/model/user.model";
 import { CustomError } from "@/lib/utils";
+import prisma from "@/lib/prisma";
 
 export default {
   providers: [
@@ -37,14 +37,25 @@ export default {
       },
 
       authorize: async (credentials) => {
-        await connectDb();
-
+        // await connectDb();
         console.log(credentials, " credentials authorize server");
 
-        const user = await User.findOne({
-          email: credentials?.email,
-          provider: credentials?.provider,
+        console.log(
+          credentials.email,
+          credentials?.provider,
+          " credentials?.email || credentials?.provider",
+        );
+        if (!credentials.email || !credentials.provider) {
+          throw new CustomError("No email and provider"); //No email and provider
+        }
+
+        const user = await prisma.user.findFirst({
+          where: {
+            email: credentials.email,
+            provider: credentials.provider,
+          },
         });
+        console.log(user, " user 123");
 
         if (!user) throw new CustomError("Invalid credentials"); //no user found
 
@@ -77,12 +88,28 @@ export default {
           (user as any)?.name ||
           (email.includes("@") ? email.split("@")[0] : "User");
 
-        const image = (profile as any)?.picture ?? (profile as any)?.avatar_url ?? (user as any)?.image ?? null;
+        const image =
+          (profile as any)?.picture ??
+          (profile as any)?.avatar_url ??
+          (user as any)?.image ??
+          null;
 
         // create user
-        let dbUser = await User.findOne({ email, provider });
+        let dbUser = await prisma.user.findFirst({
+          where: {
+            email,
+            provider,
+          },
+        });
         if (!dbUser) {
-          dbUser = await User.create({name, email, image, provider,});
+          dbUser = await prisma.user.create({
+            data: {
+              name,
+              email,
+              image,
+              provider,
+            },
+          });
         }
         (user as any).id = dbUser.id;
         (user as any).role = dbUser.role;
@@ -91,26 +118,28 @@ export default {
 
       // credentials: id already exist from  authorize (in case if it does not)
       if (account?.provider === "credentials") {
-        (user as any).id = (user as any).id || (user as any)?._id?.toString?.();
+        (user as any).id = (user as any).id || (user as any)?.id?.toString?.();
       }
 
       return true;
     },
 
-    async jwt({token, user}) {
+    async jwt({ token, user }) {
       console.log(" jwt server");
       if (user) {
         // then get role from authorize then callbacks signIn -> user
-        token = {...token, role: user.role}
+        token = { ...token, role: user.role };
       }
       return token;
     },
-
-    async session({session, token}) {
+    async session({ session, token }) {
       console.log(" session server");
-      session.user = {...session.user, id: token.sub as string, role: token.role}
+      session.user = {
+        ...session.user,
+        id: token.sub as string,
+        role: token.role,
+      };
       return session;
     },
-  }
-}  satisfies NextAuthConfig;
-
+  },
+} satisfies NextAuthConfig;

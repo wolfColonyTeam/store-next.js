@@ -6,7 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { logoutAction } from "@/actions";
 import clsx from "clsx";
-import { useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 type Props = {
   isAuthed: boolean;
@@ -15,9 +15,14 @@ type Props = {
   userImage?: string | null;
 };
 
-export default function Links({isAuthed, userName, userEmail, userImage}: Props) {
+export default function Links({
+  isAuthed,
+  userName,
+  userEmail,
+  userImage,
+}: Props) {
   const pathname = usePathname();
-  const {data: session} = useSession();
+  const { data: session } = useSession();
   const navList = [
     {
       name: "Home",
@@ -33,6 +38,7 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
     },
   ];
 
+  console.log(isAuthed, " isAuthed");
   const isActive = (href: string) =>
     `bg-grayish-teal border border-white p-2 hover:bg-grey ${pathname === href ? "bg-grey hover:bg-grey" : ""}`;
 
@@ -46,7 +52,9 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
               href={link.href}
               className={clsx(
                 "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl", //clsx - for conditional use of classes
-                {"bg-grey ": pathname === link.href})}>
+                { "bg-grey ": pathname === link.href },
+              )}
+            >
               {link.name}
             </Link>
           );
@@ -54,14 +62,19 @@ export default function Links({isAuthed, userName, userEmail, userImage}: Props)
       </div>
 
       {isAuthed && userEmail && (
-          <>
-            {session?.user?.role === "admin" && (
-                <Link href="/admin" className={clsx(
-                    "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl", {"bg-grey ": pathname.startsWith("/admin")})}>
-                  Admin Panel
-                </Link>
-            )}
-          </>
+        <>
+          {session?.user?.role === "admin" && (
+            <Link
+              href="/admin"
+              className={clsx(
+                "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl",
+                { "bg-grey ": pathname.startsWith("/admin") },
+              )}
+            >
+              Admin Panel
+            </Link>
+          )}
+        </>
       )}
 
       <div className="logi-logout flex gap-2 items-center">
