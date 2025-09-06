@@ -4,23 +4,25 @@ import Category from "@/model/category.model";
 import CreateCategory from "@/components/categories/createCategory";
 import { Button } from "@/components/ui/button"
 
-interface CategoryI {
+export interface ICategory {
     _id: string;
     name: string;
-    tag: string;
-    description: string;
+    description?: string;
+    tag?: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export default async function CategoriesList() {
     await connectDb();
-    const categories = await Category.find()                    //get data from BD
+    const categories:ICategory[] = await Category.find()                    //get data from BD
 
     return (
         <div className="px-3">
             <h1 className="text-heading-4 font-rufina mb-3">Categories</h1>
 
             <ul className="space-y-3 flex flex-wrap space-x-6 mb-5">
-                {categories.map((category: CategoryI) => (
+                {categories.map((category) => (
                     <li className="p-4 border rounded-xl bg-white w-sm cursor-pointer transition delay-100 duration-100 ease-in-out hover:scale-103"
                         key={category._id}>
                         <div className="flex justify-between flex-row">
