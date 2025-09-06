@@ -18,6 +18,7 @@ export default async function Nav() {
         userEmail={session?.user?.email ?? null}
         userImage={session?.user?.image ?? null}
       />
+      {isAuthed && <Profile />}
     </nav>
   );
 }
