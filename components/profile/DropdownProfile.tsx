@@ -13,17 +13,9 @@ import { LogOut, Contact, Mail, UserPen, Settings } from "lucide-react";
 import React, { useState } from "react";
 import { EditProfile } from "@/components/profile/EditProfile";
 
-type ProfileProps = {
-  userName: string;
-  userEmail: string;
-  userImage: string | null;
-};
+type ProfileProps = { user: any };
 
-export default function DropdownProfile({
-  userName,
-  userEmail,
-  userImage,
-}: ProfileProps) {
+export default function DropdownProfile({ user }: ProfileProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
 
@@ -34,7 +26,7 @@ export default function DropdownProfile({
         <DropdownMenuTrigger className="cursor-pointer outline-0">
           <div className="size-11">
             <img
-              src={userImage ?? "https://github.com/shadcn.png"}
+              src={user.image ?? "https://github.com/shadcn.png"}
               alt="User img"
               className="rounded-full aspect-square size-full"
             />
@@ -43,12 +35,12 @@ export default function DropdownProfile({
         <DropdownMenuContent className="mr-4">
           <DropdownMenuLabel>
             <div className="flex items-center">
-              <Contact className="size-4 mr-2" /> {userName ?? "User"}
+              <Contact className="size-4 mr-2" /> {user.name ?? "User"}
             </div>
           </DropdownMenuLabel>
           <DropdownMenuLabel>
             <div className="flex items-center">
-              <Mail className="size-4 mr-2" /> {userEmail ?? "user@email.com"}
+              <Mail className="size-4 mr-2" /> {user.email ?? "user@email.com"}
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
@@ -82,7 +74,7 @@ export default function DropdownProfile({
       </DropdownMenu>
       {editOpen && (
         <EditProfile
-          userData={{ name: userName, email: userEmail }}
+          user={{ ...user }}
           editOpen={editOpen}
           onOpenEditProfile={setEditOpen}
         />

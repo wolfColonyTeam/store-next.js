@@ -54,8 +54,13 @@ export const updateUser = async (formData: updateUserType, email: string) => {
   console.log(formData, " data123");
   try {
     await prisma.user.update({
-      where: { email: email },
-      data: { ...formData },
+      where: { email },
+      data: {
+        name: formData.name ?? undefined,
+        profile: {
+          upsert: { update: { ...formData }, create: { ...formData } },
+        },
+      },
     });
 
     revalidatePath("/");
@@ -66,11 +71,11 @@ export const updateUser = async (formData: updateUserType, email: string) => {
   }
 };
 
-export const getUserByEmail = async (email: string) => {
+export const getUserDataByEmail = async (email: string) => {
   try {
-    return await prisma.user.findFirst({
-      where: { email: email },
-      select: { name: true, email: true, image: true },
+    return await prisma.user.findUnique({
+      where: { email },
+      select: { name: true, email: true, image: true, profile: true },
     });
   } catch (err) {
     console.log("something went wrong in getUserByEmail ", err);
