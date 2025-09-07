@@ -81,3 +81,36 @@ export const getUserDataByEmail = async (email: string) => {
     console.log("something went wrong in getUserByEmail ", err);
   }
 };
+
+export const getFullUserDataByEmail = async (email: string) => {
+  try {
+    return await prisma.user.findUnique({
+      where: { email },
+      include: { profile: true },
+    });
+  } catch (err) {
+    console.log("something went wrong in getUserByEmail ", err);
+  }
+};
+
+export const getAllUsers = async () => {
+  try {
+    return await prisma.user.findMany({
+      where: { NOT: { email: "admin@gmail.com" } },
+      include: { profile: true },
+    });
+  } catch (err) {
+    console.error(err, " Error in getAllUsers");
+  }
+};
+
+export const deleteUser = async (email: string) => {
+  try {
+    await prisma.user.delete({ where: { email } });
+
+    revalidatePath("/admin/users");
+    return { message: "User deleted successfully", success: true };
+  } catch (err) {
+    console.error(err, " Error in deleteUser");
+  }
+};
