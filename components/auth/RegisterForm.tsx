@@ -2,7 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { toast } from "react-hot-toast";
+import { createUser } from "@/actions/users.action";
 
 export const RegisterForm = () => {
   const router = useRouter();
@@ -13,6 +14,8 @@ export const RegisterForm = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  type User = Awaited<ReturnType<typeof createUser>>;
 
   const handleSignUp = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -42,28 +45,23 @@ export const RegisterForm = () => {
     };
 
     try {
-      // const response = await fetch("/api/auth/signup", {});
-      const response = await fetch("/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
-      const data = await response.json();
-      console.log(response, " on client responce 1");
-      console.log(data, " on client responce 2");
+      const response: User = await createUser(newUser);
+      console.log(response, " on client response 2");
 
-      if (!data.success) {
-        setError(data.message);
+      if (!response.success) {
+        setError(response.message);
         return;
       } else {
         toast.success("User created successfully");
         router.push("/login");
       }
+      console.log(response, " response");
+      console.log(error, " error");
     } catch (error: any) {
       setError(error);
+      console.log(error, " error in catch RegisterForm");
     } finally {
+      console.log(error, " error in finally RegisterForm");
       setIsLoading(false);
     }
   };

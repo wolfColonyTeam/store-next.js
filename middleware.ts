@@ -31,7 +31,7 @@ export async function middleware(req: NextRequest) {
   console.log("token", token);
 
   if (url.pathname.startsWith("/admin")) {
-    if (!token || token.role !== "admin") {
+    if (!token || token.role !== "ADMIN") {
       return NextResponse.redirect(new URL("/", req.url));
     }
   }

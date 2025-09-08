@@ -2,7 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { SocialLogin } from "@/components/auth/SocialLogin";
-import { toast } from "sonner";
+import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FormEvent } from "react";
@@ -35,7 +35,7 @@ export const LoginForm = () => {
 
     if (response.error) {
       setError(
-        response.error === "CredentialsSignin"
+        response.error === "Credentials Sign in"
           ? "Invalid credentials"
           : "Something went wrong",
       );

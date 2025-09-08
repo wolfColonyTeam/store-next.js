@@ -1,7 +1,12 @@
-import React from 'react'
+import React, {Suspense} from 'react';
+import CategoriesList from "@/components/categories/CategoriesList";
 
-export default function Page() {
+function Page() {
     return (
-        <div>Categories</div>
-    )
+        <Suspense fallback={'Loading categories...'}>
+            <CategoriesList/>
+        </Suspense>
+    );
 }
+
+export default Page;

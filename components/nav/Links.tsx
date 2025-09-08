@@ -2,12 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { logoutAction } from "@/actions";
 import clsx from "clsx";
-import { useSession} from "next-auth/react";
-
+import { useSession } from "next-auth/react";
+import { House, ContactRound, Telescope } from "lucide-react";
 
 type Props = {
   isAuthed: boolean;
@@ -16,85 +14,62 @@ type Props = {
   userImage?: string | null;
 };
 
-export default function Links({isAuthed, userName, userEmail, userImage}: Props) {
+export default function Links({ isAuthed, userEmail }: Props) {
   const pathname = usePathname();
-  const {data: session} = useSession();
+  const { data: session } = useSession();
   const navList = [
-    {
-      name: "Home",
-      href: "/",
-    },
-    {
-      name: "About",
-      href: "/about",
-    },
+    { name: "Home", href: "/", icon: <House className="w-4 mr-1" /> },
+    { name: "About", href: "/about", icon: <Telescope className="w-4 mr-1" /> },
     {
       name: "Contacts",
       href: "/contacts",
+      icon: <ContactRound className="w-4 mr-1" />,
     },
   ];
 
   const isActive = (href: string) =>
-    `bg-grayish-teal border border-grass p-2 hover:bg-grey ${pathname === href ? "bg-grey hover:bg-grey" : ""}`;
+    `"bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl ${pathname === href ? "bg-grey" : ""}`;
 
   return (
     <>
       <div className="flex gap-2">
-        {navList.map((link: { name: string; href: string }) => {
+        {navList.map((link) => {
           return (
             <Link
               key={link.name}
               href={link.href}
               className={clsx(
-                "bg-grayish-teal border border-grass p-2 hover:bg-grey", //clsx - for conditional use of classes
-                {
-                  "bg-grey ": pathname === link.href,
-                },
+                "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl", //clsx - for conditional use of classes
+                { "bg-grey ": pathname === link.href },
               )}
             >
-              {link.name}
+              <div className="flex items-center justify-center">
+                {link.icon}
+                <span>{link.name}</span>
+              </div>
             </Link>
           );
         })}
       </div>
 
       {isAuthed && userEmail && (
-          <>
-            {session?.user?.role === "admin" && (
-                <Link href="/admin" className={clsx(
-                    "bg-grayish-teal border border-grass p-2 hover:bg-grey", {"bg-grey ": pathname === '/admin'})}>
-                  Admin Panel
-                </Link>
-            )}
-          </>
+        <>
+          {session?.user?.role === "ADMIN" && (
+            <Link
+              href="/admin"
+              className={clsx(
+                "bg-grayish-teal border border-white p-2 hover:bg-grey rounded-xl",
+                { "bg-grey ": pathname.startsWith("/admin") },
+              )}
+            >
+              Admin Panel
+            </Link>
+          )}
+        </>
       )}
 
       <div className="logi-logout flex gap-2 items-center">
-        {isAuthed ? (
-          <>
-            {userName && (
-              <span className="text-sm opacity-80 hidden sm:inline">
-                name: {userName}
-              </span>
-            )}
-            {userEmail && (
-              <span className="text-sm opacity-80 hidden sm:inline">
-                email: {userEmail}
-              </span>
-            )}
-            {userImage && (
-              <Image src={userImage} width={40} height={40} alt="Avatar" />
-            )}
-            <form action={logoutAction}>
-              <button
-                type="submit"
-                className="bg-grayish-teal border border-grass p-2 hover:bg-grey cursor-pointer"
-              >
-                Logout
-              </button>
-            </form>
-          </>
-        ) : (
+        {!isAuthed && (
           <>
             <Link className={isActive("/login")} href="/login">
               Login

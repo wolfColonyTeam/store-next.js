@@ -2,9 +2,17 @@ import { NextAuthConfig } from "next-auth";
 import Google from "next-auth/providers/google";
 import GitHub from "next-auth/providers/github";
 import Credentials from "next-auth/providers/credentials";
-import connectDb from "@/lib/dbConnect";
-import User from "@/model/user.model";
 import { CustomError } from "@/lib/utils";
+import prisma from "@/lib/prisma";
+
+interface User {
+  id: string;
+  email: string;
+  role: string;
+  image?: string | null;
+  name: string | null;
+  test?: string | null;
+}
 
 export default {
   providers: [
@@ -31,86 +39,103 @@ export default {
     }),
     Credentials({
       credentials: {
-        email: {},
-        password: {},
-        provider: {},
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
+        provider: { label: "Provider", type: "text" },
       },
 
-      authorize: async (credentials) => {
-        await connectDb();
+      async authorize(credentials, req): Promise<User | null> {
+        console.log(credentials, req, " credentials, req");
 
-        console.log(credentials, " credentials authorize server");
+        if (!credentials.email || !credentials.provider) {
+          throw new CustomError("No email and provider"); //No email and provider
+        }
 
-        const user = await User.findOne({
-          email: credentials?.email,
-          provider: credentials?.provider,
+        const user = await prisma.user.findFirst({
+          where: {
+            email: credentials.email,
+            provider: credentials.provider,
+          },
         });
-
-        if (!user) throw new CustomError("Invalid credentials"); //no user found
-
-        // TODO: replace with bcrypt.compare(...)
-        const isValidPassword = credentials?.password === user.password;
-
-        if (!isValidPassword) throw new CustomError("Invalid credentials");
-
-        return user;
+        return user
+          ? {
+              id: user.id,
+              name: user.name ?? null,
+              email: user.email ?? null,
+              image: user.image ?? null,
+              role: user.role,
+            }
+          : null;
       },
     }),
   ],
 
   callbacks: {
     async signIn({ user, account, profile }) {
-      // for OAuth-providers one single branch
       console.log(" callbacks signIn server");
-      if (account?.provider === "google" || account?.provider === "github") {
-        await connectDb();
 
+      if (account?.provider === "google" || account?.provider === "github") {
         const provider = account.provider as "google" | "github";
         const email = (profile as any)?.email || (user as any)?.email || null;
+
         if (!email) {
           throw new Error("Email should be provided"); // return exit creating user
         }
 
         const name =
-          (profile as any)?.name ||
+          profile?.name ||
           (provider === "github" ? (profile as any)?.login : null) ||
-          (user as any)?.name ||
+          user?.name ||
           (email.includes("@") ? email.split("@")[0] : "User");
 
-        const image = (profile as any)?.picture ?? (profile as any)?.avatar_url ?? (user as any)?.image ?? null;
+        const image =
+          profile?.picture ?? profile?.avatar_url ?? user?.image ?? null;
 
         // create user
-        let dbUser = await User.findOne({ email, provider });
+        let dbUser = await prisma.user.findFirst({
+          where: {
+            email,
+          },
+        });
         if (!dbUser) {
-          dbUser = await User.create({name, email, image, provider,});
+          dbUser = await prisma.user.create({
+            data: { name, email, image, provider },
+          });
         }
-        (user as any).id = dbUser.id;
-        (user as any).role = dbUser.role;
         return true;
       }
-
-      // credentials: id already exist from  authorize (in case if it does not)
-      if (account?.provider === "credentials") {
-        (user as any).id = (user as any).id || (user as any)?._id?.toString?.();
-      }
-
       return true;
     },
 
-    async jwt({token, user}) {
+    async jwt({ token, user }) {
       console.log(" jwt server");
-      if (user) {
-        // then get role from authorize then callbacks signIn -> user
-        token = {...token, role: user.role}
+      // At the first login (after login/authorization) the user may be,
+      // but in OAuth there is nothing in user.role → we take it from the DB.
+      // In order not to hit the database every time, we do this only if the role has not yet been recorded.
+      if (!token.role) {
+        const email =
+          (user?.email as string) ?? (token.email as string) ?? null;
+
+        if (email) {
+          const dbUser = await prisma.user.findUnique({
+            where: { email },
+            select: { role: true },
+          });
+
+          if (dbUser) {
+            token.role = dbUser.role;
+          }
+        }
       }
       return token;
     },
-
-    async session({session, token}) {
-      console.log(" session server");
-      session.user = {...session.user, id: token.sub as string, role: token.role}
+    async session({ session, token }) {
+      session.user = {
+        ...session.user,
+        id: token.sub as string,
+        role: token.role ?? "USER",
+      };
       return session;
     },
-  }
-}  satisfies NextAuthConfig;
-
+  },
+} satisfies NextAuthConfig;
