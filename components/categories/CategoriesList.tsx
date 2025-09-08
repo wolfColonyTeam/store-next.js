@@ -1,21 +1,19 @@
 import React from "react";
-import connectDb from "@/lib/dbConnect";
-import Category from "@/model/category.model";
 import CreateCategory from "@/components/categories/createCategory";
 import { Button } from "@/components/ui/button"
+import prisma from "@/lib/prisma";
 
 export interface ICategory {
-    _id: string;
-    name: string;
-    description?: string;
-    tag?: string;
+    id: string;
+    title: string;
+    description: string;
+    tag: string;
     createdAt: Date;
     updatedAt: Date;
 }
 
 export default async function CategoriesList() {
-    await connectDb();
-    const categories:ICategory[] = await Category.find()                    //get data from BD
+    const categories:ICategory[] = await prisma.category.findMany()                   //get data from BD
 
     return (
         <div className="px-3">
@@ -24,10 +22,10 @@ export default async function CategoriesList() {
             <ul className="space-y-3 flex flex-wrap space-x-6 mb-5">
                 {categories.map((category) => (
                     <li className="p-4 border rounded-xl bg-white w-sm cursor-pointer transition delay-100 duration-100 ease-in-out hover:scale-103"
-                        key={category._id}>
+                        key={category.id}>
                         <div className="flex justify-between flex-row">
                             <div>
-                                <h3 className="text-heading-5">{category.name}</h3>
+                                <h3 className="text-heading-5">{category.title}</h3>
                                 <p className="text-small-text">{category.description}</p>
                             </div>
 

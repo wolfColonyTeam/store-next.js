@@ -1,11 +1,11 @@
 import React from 'react';
-import {createCategoryAction} from "@/actions";
+import {createCategoryAction} from "@/actions/category.action";
 
 function CreateCategory() {
     const inputsData = [
         {
             type: "text",
-            name: "name",
+            name: "title",
             placeholder: "title",
             label: "Title",
             id: "title",

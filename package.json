@@ -9,6 +9,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.10.0",
     "@prisma/client": "^6.15.0",
