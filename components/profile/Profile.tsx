@@ -13,8 +13,6 @@ export default async function Profile() {
     return <div>Loading...</div>;
   }
 
-  console.log(user, " user2 in Profile1111");
-
   return (
     <div>
       <DropdownProfile user={{ ...user }} />

@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowUpRight, CirclePlay } from "lucide-react";
 import Image from "next/image";
+import ShopHomePage from "@/components/home/Content";
 
 const Home = () => {
   return (
@@ -20,18 +21,6 @@ const Home = () => {
               preview and copy. Streamline your development workflow with
               easy-to-implement examples.
             </p>
-            <div className="mt-12 flex items-center gap-4">
-              <Button size="lg" className="rounded-full text-base">
-                Get Started <ArrowUpRight className="!h-5 !w-5" />
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-full text-base shadow-none"
-              >
-                <CirclePlay className="!h-5 !w-5" /> Watch Demo
-              </Button>
-            </div>
           </div>
           <div className="w-full  aspect-video bg-accent rounded-xl">
             <div className="h-full relative">
@@ -47,6 +36,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <ShopHomePage />
     </>
   );
 };
