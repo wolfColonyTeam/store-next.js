@@ -1,43 +1,48 @@
 import React from "react";
 import CreateCategory from "@/components/categories/createCategory";
-import { Button } from "@/components/ui/button"
+import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow,} from "@/components/ui/table"
 import prisma from "@/lib/prisma";
 
 export interface ICategory {
-    id: string;
-    title: string;
-    description: string;
-    tag: string;
-    createdAt: Date;
-    updatedAt: Date;
+  id: string;
+  title: string;
+  description: string;
+  tag: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export default async function CategoriesList() {
-    const categories:ICategory[] = await prisma.category.findMany()                   //get data from BD
+  const categories: ICategory[] = await prisma.category.findMany()   //get data from BG
 
-    return (
-        <div className="px-3">
-            <h1 className="text-heading-4 font-rufina mb-3">Categories</h1>
+  return (
+    <div className="p-4 bg-white border rounded-xl">
+      <div className={"flex flex-wrap flex justify-between"}>
+        <h1 className="text-heading-4 font-rufina mb-3">Categories</h1>
+        <CreateCategory/>
+      </div>
 
-            <ul className="space-y-3 flex flex-wrap space-x-6 mb-5">
-                {categories.map((category) => (
-                    <li className="p-4 border rounded-xl bg-white w-sm cursor-pointer transition delay-100 duration-100 ease-in-out hover:scale-103"
-                        key={category.id}>
-                        <div className="flex justify-between flex-row">
-                            <div>
-                                <h3 className="text-heading-5">{category.title}</h3>
-                                <p className="text-small-text">{category.description}</p>
-                            </div>
+      <Table>
+        <TableCaption></TableCaption>
+        <TableHeader>
 
-                            <div>
-                                <span className="border border-grass rounded-xl px-2 py-1 mb-3 bg-light-mint">{category.tag}</span>
-                            </div>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+          <TableRow>
+            <TableHead className="text-heading-5 w-[100px]">Name</TableHead>
+            <TableHead className="text-heading-5">Description</TableHead>
+            <TableHead className="text-heading-5">Tag</TableHead>
+          </TableRow>
+        </TableHeader>
 
-            <CreateCategory/>
-        </div>
-    );
+        <TableBody>
+          {categories.map((category) => (
+            <TableRow key={category.tag}>
+              <TableCell>{category.title}</TableCell>
+              <TableCell>{category.description}</TableCell>
+              <TableCell>{category.tag}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  )
 }
