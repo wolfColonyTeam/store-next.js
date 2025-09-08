@@ -1,3 +1,5 @@
+"use server"
+
 import * as React from "react"
 import {Button} from "@/components/ui/button"
 import {DropdownMenu, DropdownMenuContent, DropdownMenuTrigger,} from "@/components/ui/dropdown-menu"
@@ -52,8 +54,7 @@ function CreateCategory() {
                 />
               </React.Fragment>
             ))}
-            <Button type="submit"
-                    className={"border border-grass text-basic rounded px-2 py-1 mt-3 max-w-20 bg-light-mint hover:text-white bg-green"}>Create</Button>
+            <Button type="submit" className={"border border-grass text-basic rounded px-2 py-1 mt-3 max-w-20 bg-light-mint hover:text-white bg-green"}>Create</Button>
           </form>
         </div>
       </DropdownMenuContent>

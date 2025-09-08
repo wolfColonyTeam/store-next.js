@@ -1,3 +1,5 @@
+"use server"
+
 import React from "react";
 import CreateCategory from "@/components/categories/createCategory";
 import {Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow,} from "@/components/ui/table"
@@ -34,8 +36,8 @@ export default async function CategoriesList() {
         </TableHeader>
 
         <TableBody>
-          {categories.map((category) => (
-            <TableRow key={category.tag}>
+          {categories.map((category, id) => (
+            <TableRow key={category.id}>
               <TableCell>{category.title}</TableCell>
               <TableCell>{category.description}</TableCell>
               <TableCell>{category.tag}</TableCell>
