@@ -66,7 +66,7 @@ export default function UserItem({ user }: { user: User }) {
               className={clsx("size-5 mr-3 fill-red-200 cursor-pointer", {
                 "opacity-25 pointer-events-none": loading,
               })}
-              onClick={() => handleDelete(user?.email!)}
+              onClick={async () => await handleDelete(user?.email!)}
             />
             <PencilOff
               className={clsx("size-5 fill-blue-500 cursor-pointer", {

@@ -23,7 +23,7 @@ model Profile {
   dateOfBirth DateTime?
   biography   String?
   phone       String?
-  user        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId      String    @unique
 }
 
@@ -48,7 +48,7 @@ model Orders {
   content   String?
   published Boolean  @default(false)
   authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

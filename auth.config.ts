@@ -52,10 +52,7 @@ export default {
         }
 
         const user = await prisma.user.findFirst({
-          where: {
-            email: credentials.email,
-            provider: credentials.provider,
-          },
+          where: { email: credentials.email, provider: credentials.provider },
         });
         return user
           ? {
@@ -92,11 +89,7 @@ export default {
           profile?.picture ?? profile?.avatar_url ?? user?.image ?? null;
 
         // create user
-        let dbUser = await prisma.user.findFirst({
-          where: {
-            email,
-          },
-        });
+        let dbUser = await prisma.user.findFirst({ where: { email } });
         if (!dbUser) {
           dbUser = await prisma.user.create({
             data: { name, email, image, provider },
@@ -108,7 +101,6 @@ export default {
     },
 
     async jwt({ token, user }) {
-      console.log(" jwt server");
       // At the first login (after login/authorization) the user may be,
       // but in OAuth there is nothing in user.role → we take it from the DB.
       // In order not to hit the database every time, we do this only if the role has not yet been recorded.

@@ -16,8 +16,6 @@ import UserItem from "@/components/admin/users/UserItem";
 type Users = Awaited<ReturnType<typeof getAllUsers>>;
 
 export default function UsersTable({ users }: { users: Users }) {
-  console.log(users, " all users");
-
   return (
     <>
       <Table>
