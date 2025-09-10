@@ -16,3 +16,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /// home page content utils
+
+export const formatCurrency = (n: number) =>
+  new Intl.NumberFormat("uk-UA", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(n);
