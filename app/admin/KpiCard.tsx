@@ -2,11 +2,9 @@
 export default function KpiCard({
   title,
   value,
-  delta,
 }: {
   title: string;
   value: string;
-  delta: string;
 }) {
   return (
     <div className="card">
@@ -15,9 +13,6 @@ export default function KpiCard({
         <div className="text-3xl font-semibold text-[--color-grass]">
           {value}
         </div>
-        <span className="text-xs text-emerald-700 bg-emerald-100 border border-emerald-200 rounded-full px-2 py-0.5">
-          {delta}
-        </span>
       </div>
     </div>
   );

@@ -1,10 +1,20 @@
-import {Search, ShieldBan, ShieldCheck, Trash2, Users, Package, DollarSign, SquareStar} from "lucide-react";
+import {
+  Search,
+  ShieldBan,
+  ShieldCheck,
+  Trash2,
+  Users,
+  Package,
+  DollarSign,
+  SquareStar,
+} from "lucide-react";
 import { MOCK_USERS } from "@/app/admin/data";
 import KpiCard from "@/app/admin/KpiCard";
 import Th from "./Th";
 import Td from "./Td";
 import { ConfirmModal } from "@/app/admin/ConfirmModal";
 import Link from "next/link";
+import AsideNav from "@/components/admin/AsideNav";
 
 export default function AdminDashboardPage() {
   return (
@@ -13,9 +23,9 @@ export default function AdminDashboardPage() {
       <header className="sticky top-0 z-40 border-b border-[--color-lime]/40 backdrop-blur bg-[--color-light-mint]/80">
         <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-              <h1 className="text-lg font-semibold text-[--color-olive]">
-                Admin Panel
-              </h1>
+            <h1 className="text-lg font-semibold text-[--color-olive]">
+              Admin Panel
+            </h1>
           </div>
 
           <div className="hidden md:flex items-center gap-3">
@@ -32,43 +42,16 @@ export default function AdminDashboardPage() {
 
       <div className="mx-auto max-w-7xl px-4 py-6 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6">
         {/* Sidebar */}
-        <aside className="rounded-2xl border border-[--color-lime]/40 bg-white/70 p-4">
-          <nav className="space-y-1">
-            <Link
-              className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[--color-lime]/30 text-[--color-olive] font-semibold"
-              href="/admin/users"
-            >
-              <Users className="h-4 w-4" /> Users
-            </Link>
-            <Link
-              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[--color-lime]/20"
-              href="/admin/orders"
-            >
-              <Package className="h-4 w-4" /> Orders
-            </Link>
-            <Link
-              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[--color-lime]/20"
-              href="/admin/transactions"
-            >
-              <DollarSign className="h-4 w-4" /> Transactions
-            </Link>
-            <Link
-              className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[--color-lime]/20"
-              href="/admin/categories"
-            >
-               <SquareStar className="h-4 w-4" /> Categories
-            </Link>
-          </nav>
-        </aside>
+        <AsideNav />
 
         {/* Main */}
         <main className="space-y-6">
           {/* KPI cards */}
           <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <KpiCard title="Всего пользователей" value="12,480" delta="+2.1%" />
-            <KpiCard title="Активные сегодня" value="1,042" delta="+0.6%" />
-            <KpiCard title="Заказов за 24ч" value="384" delta="+4.3%" />
-            <KpiCard title="Выручка, $ " value="15,210" delta="+3.8%" />
+            <KpiCard title="Total Users" value="12,480" />
+            <KpiCard title="Orders in 24h" value="384" />
+            <KpiCard title="Total Products" value="15,210" />
+            <KpiCard title="Total Categories" value="15,210" />
           </section>
 
           {/* Filters */}

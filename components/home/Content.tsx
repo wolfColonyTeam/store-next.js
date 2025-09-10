@@ -264,7 +264,7 @@ function StarRating({ value }: { value: number }) {
       {Array.from({ length: 5 }).map((_, i) => (
         <Star
           key={i}
-          className={`h-4 w-4 ${
+          className={`size-4 ${
             i < full
               ? "fill-yellow-500 stroke-yellow-500"
               : half && i === full
@@ -776,12 +776,12 @@ function ProductCard({ p }: { p: Product }) {
         </CardDescription>
       </CardHeader>
       <CardContent className="mt-auto space-y-2">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col items-center justify-between">
           <div className="flex items-center gap-2">
             <StarRating value={p.rating} />
             <span className="text-xs text-muted-foreground">({p.reviews})</span>
           </div>
-          <div className="text-base font-semibold">
+          <div className="text-base font-semibold mt-2">
             {formatCurrency(p.price)}
           </div>
         </div>
