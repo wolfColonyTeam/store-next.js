@@ -1,31 +1,42 @@
 import {PrismaClient} from "../lib/generated/prisma";
+import productsJson from './produstList.json'
+import categoriesJson from './categories.json'
+
 const prisma = new PrismaClient();
 
-async function main() {
-    const createCategories = await prisma.category.createMany({
-        data: [
-            {title: "Laptops", tag: "laptops", description: "Modern laptops for work, study and gaming"},
-            {title: "Tablets", tag: "tablets", description: "Tablets for work and entertainment"},
-            {title: "Smartphones", tag: "smartphones", description: "Mobile phones and accessories"},
-            {title: "Gadgets & Accessories", tag: "gadgets", description: "Smartwatches, fitness trackers and other devices"},
-            {title: "Chairs", tag: "chairs", description: "Ergonomic office and gaming chairs"},
-            {title: "Mice", tag: "mice", description: "Computer mice: office, gaming and ergonomic"},
-            {title: "Keyboards", tag: "keyboards", description: "Mechanical and membrane keyboards"},
-            {title: "Monitors", tag: "monitors", description: "Gaming and professional monitors"},
-            {title: "Audio & Headsets", tag: "audio", description: "Headphones, microphones and headsets"},
-            {title: "Components", tag: "components", description: "GPUs, CPUs, SSDs, RAM and more"},
-            {title: "Networking", tag: "networking", description: "Wi-Fi routers, NAS and network accessories"},
-            {title: "Backpacks & Bags", tag: "backpacks", description: "Stylish backpacks and bags for laptops and gadgets"},
-            {title: "Clothing", tag: "clothes", description: "T-shirts, hoodies and IT merch"},
-            {title: "Gifts for IT People", tag: "gifts", description: "Unique gifts and souvenirs for developers"},
-            {title: "Mugs & Thermo Cups", tag: "mugs", description: "Funny IT mugs and stylish thermo cups"},
-            {title: "Stationery", tag: "stationery", description: "Notebooks, pens and other office supplies"},
-            {title: "Books & Learning", tag: "books", description: "Programming and design books"},
-        ],
-        skipDuplicates: true,
+async function seed() {
+  const categoryMap = {};
+
+  for (const categoryItem of categoriesJson) {
+    const category: any = await prisma.category.create({
+      data: {
+        title: categoryItem.title,
+        tag: categoryItem.tag,
+        description: categoryItem.description,
+      },
     });
 
-    console.log(`Created ${createCategories.count} Categories`);
+    categoryMap[categoryItem.tag] = category.id;
+  }
+
+  for (const product of productsJson) {
+    await prisma.product.create({
+      data: {
+        title: product.title,
+        description: product.description,
+        tag: product.tag,
+        price: product.price,
+        rating: product.rating,
+        reviews: product.reviews,
+        categoryId: categoryMap[product.tag],
+        brand: product.brand,
+        inStock: product.inStock,
+        image: product.image,
+      },
+    });
+  }
+  console.log("Seed is done");
 }
 
-main();
+seed()
+  .catch((e) => console.error(e))
