@@ -68,10 +68,10 @@ model Product {
   title       String
   description String
   tag         String
-  price       String
-  rating      String
-  reviews     String
-  category    Category @relation(fields: [categoryId], references: [id])
+  price       Int
+  rating      Int
+  reviews     Int
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId  String
   brand       String
   inStock     String
