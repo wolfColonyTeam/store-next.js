@@ -8,7 +8,7 @@
     "reviews": "50",
     "brand": "Apple",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Laptops+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Laptops Product 2",
@@ -19,7 +19,7 @@
     "reviews": "100",
     "brand": "Dell",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Laptops+2"
+   "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Laptops Product 3",
@@ -30,7 +30,7 @@
     "reviews": "150",
     "brand": "ASUS",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Laptops+3"
+   "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Laptops Product 4",
@@ -41,7 +41,7 @@
     "reviews": "200",
     "brand": "HP",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Laptops+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Laptops Product 5",
@@ -52,7 +52,7 @@
     "reviews": "250",
     "brand": "Lenovo",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Laptops+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Tablets Product 1",
@@ -63,7 +63,7 @@
     "reviews": "50",
     "brand": "Apple",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Tablets+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Tablets Product 2",
@@ -74,7 +74,7 @@
     "reviews": "100",
     "brand": "Samsung",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Tablets+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Tablets Product 3",
@@ -85,7 +85,7 @@
     "reviews": "150",
     "brand": "Microsoft",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Tablets+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Tablets Product 4",
@@ -96,7 +96,7 @@
     "reviews": "200",
     "brand": "Lenovo",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Tablets+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Tablets Product 5",
@@ -107,7 +107,7 @@
     "reviews": "250",
     "brand": "Amazon",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Tablets+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Smartphones Product 1",
@@ -118,7 +118,7 @@
     "reviews": "50",
     "brand": "Apple",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Smartphones+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Smartphones Product 2",
@@ -129,7 +129,7 @@
     "reviews": "100",
     "brand": "Samsung",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Smartphones+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Smartphones Product 3",
@@ -140,7 +140,7 @@
     "reviews": "150",
     "brand": "Google",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Smartphones+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Smartphones Product 4",
@@ -151,7 +151,7 @@
     "reviews": "200",
     "brand": "OnePlus",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Smartphones+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Smartphones Product 5",
@@ -162,7 +162,7 @@
     "reviews": "250",
     "brand": "Xiaomi",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Smartphones+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gadgets & Accessories Product 1",
@@ -173,7 +173,7 @@
     "reviews": "50",
     "brand": "Apple",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gadgets+&+Accessories+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gadgets & Accessories Product 2",
@@ -184,7 +184,7 @@
     "reviews": "100",
     "brand": "Samsung",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gadgets+&+Accessories+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gadgets & Accessories Product 3",
@@ -195,7 +195,7 @@
     "reviews": "150",
     "brand": "Fitbit",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gadgets+&+Accessories+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gadgets & Accessories Product 4",
@@ -206,7 +206,7 @@
     "reviews": "200",
     "brand": "Garmin",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gadgets+&+Accessories+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gadgets & Accessories Product 5",
@@ -217,7 +217,7 @@
     "reviews": "250",
     "brand": "Xiaomi",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gadgets+&+Accessories+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Chairs Product 1",
@@ -228,7 +228,7 @@
     "reviews": "50",
     "brand": "DXRacer",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Chairs+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Chairs Product 2",
@@ -239,7 +239,7 @@
     "reviews": "100",
     "brand": "Secretlab",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Chairs+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Chairs Product 3",
@@ -250,7 +250,7 @@
     "reviews": "150",
     "brand": "Herman Miller",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Chairs+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Chairs Product 4",
@@ -261,7 +261,7 @@
     "reviews": "200",
     "brand": "Ikea",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Chairs+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Chairs Product 5",
@@ -272,7 +272,7 @@
     "reviews": "250",
     "brand": "Cougar",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Chairs+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mice Product 1",
@@ -283,7 +283,7 @@
     "reviews": "50",
     "brand": "Logitech",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mice+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mice Product 2",
@@ -294,7 +294,7 @@
     "reviews": "100",
     "brand": "Razer",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mice+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mice Product 3",
@@ -305,7 +305,7 @@
     "reviews": "150",
     "brand": "SteelSeries",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mice+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mice Product 4",
@@ -316,7 +316,7 @@
     "reviews": "200",
     "brand": "Corsair",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mice+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mice Product 5",
@@ -327,7 +327,7 @@
     "reviews": "250",
     "brand": "Microsoft",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mice+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Keyboards Product 1",
@@ -338,7 +338,7 @@
     "reviews": "50",
     "brand": "Logitech",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Keyboards+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Keyboards Product 2",
@@ -349,7 +349,7 @@
     "reviews": "100",
     "brand": "Razer",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Keyboards+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Keyboards Product 3",
@@ -360,7 +360,7 @@
     "reviews": "150",
     "brand": "SteelSeries",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Keyboards+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Keyboards Product 4",
@@ -371,7 +371,7 @@
     "reviews": "200",
     "brand": "Keychron",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Keyboards+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Keyboards Product 5",
@@ -382,7 +382,7 @@
     "reviews": "250",
     "brand": "Corsair",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Keyboards+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Monitors Product 1",
@@ -393,7 +393,7 @@
     "reviews": "50",
     "brand": "LG",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Monitors+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Monitors Product 2",
@@ -404,7 +404,7 @@
     "reviews": "100",
     "brand": "Dell",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Monitors+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Monitors Product 3",
@@ -415,7 +415,7 @@
     "reviews": "150",
     "brand": "ASUS",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Monitors+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Monitors Product 4",
@@ -426,7 +426,7 @@
     "reviews": "200",
     "brand": "Samsung",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Monitors+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Monitors Product 5",
@@ -437,7 +437,7 @@
     "reviews": "250",
     "brand": "BenQ",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Monitors+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Audio & Headsets Product 1",
@@ -448,7 +448,7 @@
     "reviews": "50",
     "brand": "Sony",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Audio+&+Headsets+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Audio & Headsets Product 2",
@@ -459,7 +459,7 @@
     "reviews": "100",
     "brand": "Bose",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Audio+&+Headsets+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Audio & Headsets Product 3",
@@ -470,7 +470,7 @@
     "reviews": "150",
     "brand": "Sennheiser",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Audio+&+Headsets+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Audio & Headsets Product 4",
@@ -481,7 +481,7 @@
     "reviews": "200",
     "brand": "HyperX",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Audio+&+Headsets+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Audio & Headsets Product 5",
@@ -492,7 +492,7 @@
     "reviews": "250",
     "brand": "Razer",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Audio+&+Headsets+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Components Product 1",
@@ -503,7 +503,7 @@
     "reviews": "50",
     "brand": "NVIDIA",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Components+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Components Product 2",
@@ -514,7 +514,7 @@
     "reviews": "100",
     "brand": "AMD",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Components+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Components Product 3",
@@ -525,7 +525,7 @@
     "reviews": "150",
     "brand": "Intel",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Components+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Components Product 4",
@@ -536,7 +536,7 @@
     "reviews": "200",
     "brand": "Samsung",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Components+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Components Product 5",
@@ -547,7 +547,7 @@
     "reviews": "250",
     "brand": "Corsair",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Components+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Networking Product 1",
@@ -558,7 +558,7 @@
     "reviews": "50",
     "brand": "TP-Link",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Networking+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Networking Product 2",
@@ -569,7 +569,7 @@
     "reviews": "100",
     "brand": "Netgear",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Networking+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Networking Product 3",
@@ -580,7 +580,7 @@
     "reviews": "150",
     "brand": "Asus",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Networking+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Networking Product 4",
@@ -591,7 +591,7 @@
     "reviews": "200",
     "brand": "D-Link",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Networking+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Networking Product 5",
@@ -602,7 +602,7 @@
     "reviews": "250",
     "brand": "Linksys",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Networking+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Backpacks & Bags Product 1",
@@ -613,7 +613,7 @@
     "reviews": "50",
     "brand": "Samsonite",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Backpacks+&+Bags+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Backpacks & Bags Product 2",
@@ -624,7 +624,7 @@
     "reviews": "100",
     "brand": "Targus",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Backpacks+&+Bags+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Backpacks & Bags Product 3",
@@ -635,7 +635,7 @@
     "reviews": "150",
     "brand": "HP",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Backpacks+&+Bags+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Backpacks & Bags Product 4",
@@ -646,7 +646,7 @@
     "reviews": "200",
     "brand": "Lenovo",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Backpacks+&+Bags+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Backpacks & Bags Product 5",
@@ -657,7 +657,7 @@
     "reviews": "250",
     "brand": "Xiaomi",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Backpacks+&+Bags+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Clothing Product 1",
@@ -668,7 +668,7 @@
     "reviews": "50",
     "brand": "Nike",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Clothing+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Clothing Product 2",
@@ -679,7 +679,7 @@
     "reviews": "100",
     "brand": "Adidas",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Clothing+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Clothing Product 3",
@@ -690,7 +690,7 @@
     "reviews": "150",
     "brand": "Puma",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Clothing+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Clothing Product 4",
@@ -701,7 +701,7 @@
     "reviews": "200",
     "brand": "Uniqlo",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Clothing+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Clothing Product 5",
@@ -712,7 +712,7 @@
     "reviews": "250",
     "brand": "H&M",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Clothing+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gifts for IT People Product 1",
@@ -723,7 +723,7 @@
     "reviews": "50",
     "brand": "Funko",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gifts+for+IT+People+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gifts for IT People Product 2",
@@ -734,7 +734,7 @@
     "reviews": "100",
     "brand": "LEGO",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gifts+for+IT+People+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gifts for IT People Product 3",
@@ -745,7 +745,7 @@
     "reviews": "150",
     "brand": "Xiaomi",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gifts+for+IT+People+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gifts for IT People Product 4",
@@ -756,7 +756,7 @@
     "reviews": "200",
     "brand": "Keychron",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gifts+for+IT+People+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Gifts for IT People Product 5",
@@ -767,7 +767,7 @@
     "reviews": "250",
     "brand": "Razer",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Gifts+for+IT+People+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mugs & Thermo Cups Product 1",
@@ -778,7 +778,7 @@
     "reviews": "50",
     "brand": "Ikea",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mugs+&+Thermo+Cups+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mugs & Thermo Cups Product 2",
@@ -789,7 +789,7 @@
     "reviews": "100",
     "brand": "Contigo",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mugs+&+Thermo+Cups+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mugs & Thermo Cups Product 3",
@@ -800,7 +800,7 @@
     "reviews": "150",
     "brand": "Thermos",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mugs+&+Thermo+Cups+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mugs & Thermo Cups Product 4",
@@ -811,7 +811,7 @@
     "reviews": "200",
     "brand": "Ember",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mugs+&+Thermo+Cups+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Mugs & Thermo Cups Product 5",
@@ -822,7 +822,7 @@
     "reviews": "250",
     "brand": "Yeti",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Mugs+&+Thermo+Cups+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Stationery Product 1",
@@ -833,7 +833,7 @@
     "reviews": "50",
     "brand": "Moleskine",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Stationery+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Stationery Product 2",
@@ -844,7 +844,7 @@
     "reviews": "100",
     "brand": "Parker",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Stationery+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Stationery Product 3",
@@ -855,7 +855,7 @@
     "reviews": "150",
     "brand": "Pilot",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Stationery+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Stationery Product 4",
@@ -866,7 +866,7 @@
     "reviews": "200",
     "brand": "Staedtler",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Stationery+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Stationery Product 5",
@@ -877,7 +877,7 @@
     "reviews": "250",
     "brand": "Faber-Castell",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Stationery+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Books & Learning Product 1",
@@ -888,7 +888,7 @@
     "reviews": "50",
     "brand": "O’Reilly",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Books+&+Learning+1"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Books & Learning Product 2",
@@ -899,7 +899,7 @@
     "reviews": "100",
     "brand": "Manning",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Books+&+Learning+2"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Books & Learning Product 3",
@@ -910,7 +910,7 @@
     "reviews": "150",
     "brand": "Packt",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Books+&+Learning+3"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Books & Learning Product 4",
@@ -921,7 +921,7 @@
     "reviews": "200",
     "brand": "No Starch Press",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Books+&+Learning+4"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   },
   {
     "title": "Books & Learning Product 5",
@@ -932,6 +932,6 @@
     "reviews": "250",
     "brand": "Apress",
     "inStock": "true",
-    "image": "https://via.placeholder.com/300x200.png?text=Books+&+Learning+5"
+    "image": "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
   }
 ]

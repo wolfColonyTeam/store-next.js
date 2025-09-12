@@ -35,6 +35,13 @@ async function seed() {
       },
     });
   }
+
+
+  // await prisma.product.updateMany({
+  //   data : {
+  //     image:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop"
+  //   }
+  // })
   console.log("Seed is done");
 }
 
