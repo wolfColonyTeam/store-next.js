@@ -12,13 +12,11 @@ import { Separator } from "@/components/ui/separator";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/components/ui/select";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger,} from "@/components/ui/accordion";
 import {Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle,SheetTrigger,} from "@/components/ui/sheet";
-import {Skeleton} from "@/components/ui/skeleton";
 import { Filter, Search, X } from "lucide-react";
-import { BRANDS, CATEGORIES, DEMO_PRODUCTS } from "@/components/home/data";
+import { BRANDS, CATEGORIES } from "@/components/home/data";
 import StarRating from "@/components/home/StarRating";
 import ProductsSkeleton from "@/components/home/ProductsSkeleton";
 import { formatCurrency } from "@/lib/utils";
-import ProductCard from "@/components/home/ProductCard";
 import Product from "@/components/product/Product";
 
 // ---------- Main Page ----------
