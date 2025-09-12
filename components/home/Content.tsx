@@ -22,8 +22,8 @@ import ProductCard from "@/components/home/ProductCard";
 import Product from "@/components/product/Product";
 
 // ---------- Main Page ----------
-export default function ShopHomePage() {
-  // UI State
+export default function ShopHomePage(props:any) {
+  const {products} = props;
   const [search, setSearch] = useState("");
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 2000]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -34,6 +34,7 @@ export default function ShopHomePage() {
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 12;
   const [loading, setLoading] = useState(true);
+
 
   // Simulate initial loading
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function ShopHomePage() {
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    let items = DEMO_PRODUCTS.filter((p) => {
+    let items = products.filter((p:any) => {
       const inCategory =
         selectedCategories.length === 0 ||
         selectedCategories.includes(p.category);
@@ -285,9 +286,8 @@ export default function ShopHomePage() {
             />
           ) : (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {/*<Product/>*/}
-              {paginated.map((p) => (
-                <ProductCard key={p.id} p={p} />
+              {paginated.map((item:any) => (
+                <Product key={item.id} product={item}/>
               ))}
             </div>
           )}

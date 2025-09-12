@@ -3,64 +3,61 @@ import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
 import {ShoppingCart} from "lucide-react";
 import React from "react";
-import prisma from "@/lib/prisma";
-import {formatCurrency, StarRating} from "@/components/home/Content";
+import StarRating from "@/components/home/StarRating";
 
-export type Product = {
+export type ProductType = {
   id: string;
   title: string;
   description: string;
-  price: string; // in USD
+  price: number; // in USD
   rating: number; // 0..5
   reviews: number;
   category: string;
   brand: string;
+  tag: string;
   inStock: boolean;
   image: string;
-  createdAt: string; // ISO date
+  createdAt: string;
+  updatedAt:string;
 }
 
-export default async function Product() {
-  const products = await prisma.product.findMany()
+export default function Product(props: { product: ProductType }) {
+  const {product} = props;
 
   return (
-    <div className="grid grid-cols-3 gap-6">
-      {products.map((product) => (
-        <Card key={product.id} className="group flex h-full flex-col overflow-hidden rounded-2xl">
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <img src={product.image} alt={product.title}
-                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy"/>
+    <Card className="group flex h-full flex-col overflow-hidden rounded-2xl">
+      <div className="relative aspect-[4/3] overflow-hidden">
+        <img src={product.image} alt={product.title}
+             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy"/>
 
-            <div className="absolute left-2 top-2 flex gap-2">
-              {!product.inStock && <Badge variant="secondary">Out of stock</Badge>}
-              <Badge className="bg-primary/90">{product.tag}</Badge>
-            </div>
+        <div className="absolute left-2 top-2 flex gap-2">
+          {!product.inStock && <Badge variant="secondary">Out of stock</Badge>}
+          <Badge className="bg-primary/90">{product.tag}</Badge>
+        </div>
+      </div>
+
+      <CardHeader className="space-y-1">
+        <CardTitle className="line-clamp-1 text-base">{product.title}</CardTitle>
+        <CardDescription className="line-clamp-2 min-h-[2.5rem]">
+          {product.description}
+        </CardDescription>
+      </CardHeader>
+
+      <CardContent className="mt-auto space-y-2">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <StarRating value={Number(product.rating)}/>
+            <span className="text-xs text-muted-foreground">({product.reviews})</span>
           </div>
+          <div className="text-base font-semibold">
+            {/*{formatCurrency(product.price)}*/}
+          </div>
+        </div>
+      </CardContent>
 
-          <CardHeader className="space-y-1">
-            <CardTitle className="line-clamp-1 text-base">{product.title}</CardTitle>
-            <CardDescription className="line-clamp-2 min-h-[2.5rem]">
-              {product.description}
-            </CardDescription>
-          </CardHeader>
-
-          <CardContent className="mt-auto space-y-2">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <StarRating value={Number(product.rating)}/>
-                <span className="text-xs text-muted-foreground">({product.reviews})</span>
-              </div>
-              <div className="text-base font-semibold">
-                {/*{formatCurrency(product.price)}*/}
-              </div>
-            </div>
-          </CardContent>
-
-          <CardFooter>
-            <Button className="w-full" disabled={!product.inStock}><ShoppingCart className="mr-2 h-4 w-4"/> Add to cart</Button>
-          </CardFooter>
-        </Card>
-      ))}
-    </div>
+      <CardFooter>
+        <Button className="w-full" disabled={!product.inStock}><ShoppingCart className="mr-2 h-4 w-4"/> Add to cart</Button>
+      </CardFooter>
+    </Card>
   )
 }

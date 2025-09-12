@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowUpRight, CirclePlay } from "lucide-react";
 import Image from "next/image";
 import ShopHomePage from "@/components/home/Content";
+import prisma from "@/lib/prisma";
 
-const Home = () => {
+async function Home () {
+  const products = await prisma.product.findMany()
+
   return (
     <>
       <div className="min-h-screen flex items-center justify-center">
@@ -36,7 +39,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <ShopHomePage />
+      <ShopHomePage products={products}/>
     </>
   );
 };
