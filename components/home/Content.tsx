@@ -1,44 +1,20 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
-import { Separator } from "@/components/ui/separator";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import {
-  Sheet,
-  SheetContent,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Filter, Search, ShoppingCart, Star, X } from "lucide-react";
+import React, {useEffect, useMemo, useState} from "react";
+import {Button} from "@/components/ui/button";
+import {Badge} from "@/components/ui/badge";
+import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+import {Checkbox} from "@/components/ui/checkbox";
+import {Input} from "@/components/ui/input";
+import {Label} from "@/components/ui/label";
+import {Slider} from "@/components/ui/slider";
+import {Separator} from "@/components/ui/separator";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue,} from "@/components/ui/select";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger,} from "@/components/ui/accordion";
+import {Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle,SheetTrigger,} from "@/components/ui/sheet";
+import {Skeleton} from "@/components/ui/skeleton";
+import {Filter, Search, ShoppingCart, Star, X} from "lucide-react";
+import Product from "@/components/product/Product";
 
 // ---------- Types ----------
 export type Product = {
@@ -77,200 +53,23 @@ const BRANDS = [
   "Sony",
 ] as const;
 
-const DEMO_PRODUCTS: Product[] = [
-  {
-    id: "p1",
-    title: "Mechanical Keyboard K8 Pro",
-    description: "Hot‑swappable, RGB, Gateron switches.",
-    price: 99,
-    rating: 4.6,
-    reviews: 312,
-    category: "Keyboards",
-    brand: "Keychron",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-07-18T10:00:00.000Z",
-  },
-  {
-    id: "p2",
-    title: "Razer Viper Mini SE",
-    description: "Ultralight gaming mouse for precision.",
-    price: 69,
-    rating: 4.4,
-    reviews: 154,
-    category: "Mice",
-    brand: "Razer",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-06-02T09:00:00.000Z",
-  },
-  {
-    id: "p3",
-    title: "Logitech MX Master 3S",
-    description: "Ergonomic productivity mouse with Flow.",
-    price: 119,
-    rating: 4.8,
-    reviews: 2894,
-    category: "Mice",
-    brand: "Logitech",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-05-15T12:00:00.000Z",
-  },
-  {
-    id: "p4",
-    title: "ASUS ProArt 27",
-    description: "Color‑accurate 27″ 4K monitor for creators.",
-    price: 449,
-    rating: 4.7,
-    reviews: 673,
-    category: "Monitors",
-    brand: "ASUS",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1593640408182-31c70c8268f6?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-03-29T08:00:00.000Z",
-  },
-  {
-    id: "p5",
-    title: "MacBook Air M3 13",
-    description: "Silent performance, all‑day battery.",
-    price: 1199,
-    rating: 4.9,
-    reviews: 1031,
-    category: "Laptops",
-    brand: "Apple",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-02-10T10:00:00.000Z",
-  },
-  {
-    id: "p6",
-    title: "Google Pixel Buds Pro",
-    description: "ANC earbuds with multi‑point connectivity.",
-    price: 199,
-    rating: 4.3,
-    reviews: 840,
-    category: "Audio",
-    brand: "Google",
-    inStock: false,
-    image:
-      "https://images.unsplash.com/photo-1518443952241-04e2b0a7a0f8?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-01-20T14:00:00.000Z",
-  },
-  {
-    id: "p7",
-    title: "Sony WH‑1000XM5",
-    description: "Industry‑leading noise cancellation.",
-    price: 349,
-    rating: 4.8,
-    reviews: 5203,
-    category: "Audio",
-    brand: "Sony",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1518441902113-c1d3d4c4e34a?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2024-12-08T07:00:00.000Z",
-  },
-  {
-    id: "p8",
-    title: "Dell XPS 15",
-    description: "Premium 15″ laptop for power users.",
-    price: 1899,
-    rating: 4.6,
-    reviews: 943,
-    category: "Laptops",
-    brand: "Dell",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-04-21T11:30:00.000Z",
-  },
-  {
-    id: "p9",
-    title: "Magic Trackpad 2",
-    description: "Multi‑Touch surface for precise control.",
-    price: 129,
-    rating: 4.5,
-    reviews: 1320,
-    category: "Accessories",
-    brand: "Apple",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-06-10T16:00:00.000Z",
-  },
-  {
-    id: "p10",
-    title: "Razer BlackShark V2",
-    description: "Esports headset with THX Spatial Audio.",
-    price: 129,
-    rating: 4.2,
-    reviews: 410,
-    category: "Audio",
-    brand: "Razer",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1518441902113-c1d3d4c4e34a?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-07-05T18:00:00.000Z",
-  },
-  {
-    id: "p11",
-    title: "ASUS ROG Swift 32",
-    description: "Fast 4K gaming monitor 144Hz.",
-    price: 999,
-    rating: 4.7,
-    reviews: 267,
-    category: "Monitors",
-    brand: "ASUS",
-    inStock: false,
-    image:
-      "https://images.unsplash.com/photo-1593640408182-31c70c8268f6?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-08-01T10:00:00.000Z",
-  },
-  {
-    id: "p12",
-    title: "Logi MX Keys S",
-    description: "Low‑profile keyboard with smart backlight.",
-    price: 119,
-    rating: 4.6,
-    reviews: 1810,
-    category: "Keyboards",
-    brand: "Logitech",
-    inStock: true,
-    image:
-      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
-    createdAt: "2025-03-05T12:00:00.000Z",
-  },
-];
 
 // ---------- Helpers ----------
-const formatCurrency = (n: number) =>
+export const formatCurrency = (n:any) =>
   new Intl.NumberFormat("uk-UA", {
     style: "currency",
     currency: "USD",
     maximumFractionDigits: 0,
   }).format(n);
 
-function StarRating({ value }: { value: number }) {
+export function StarRating({value}: { value: number }) {
   const full = Math.floor(value);
   const half = value - full >= 0.5;
   return (
     <div className="flex items-center gap-1">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          className={`h-4 w-4 ${
-            i < full
-              ? "fill-yellow-500 stroke-yellow-500"
-              : half && i === full
-                ? "fill-yellow-500/60 stroke-yellow-500/60"
-                : "stroke-muted-foreground"
-          }`}
+      {Array.from({length: 5}).map((_, i) => (
+        <Star key={i}
+          className={`h-4 w-4 ${i < full ? "fill-yellow-500 stroke-yellow-500" : half && i === full ? "fill-yellow-500/60 stroke-yellow-500/60" : "stroke-muted-foreground"}`}
         />
       ))}
     </div>
@@ -416,7 +215,7 @@ export default function ShopHomePage() {
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="outline" className="shrink-0 md:hidden">
-                <Filter className="mr-2 h-4 w-4" /> Фільтри
+                <Filter className="mr-2 h-4 w-4"/> Фільтри
               </Button>
             </SheetTrigger>
             <SheetContent side="left" className="w-[320px] p-0">
@@ -527,7 +326,7 @@ export default function ShopHomePage() {
 
           {/* Products grid */}
           {loading ? (
-            <ProductsSkeleton />
+            <ProductsSkeleton/>
           ) : paginated.length === 0 ? (
             <EmptyState
               onReset={() => {
@@ -541,8 +340,9 @@ export default function ShopHomePage() {
             />
           ) : (
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {/*<Product/>*/}
               {paginated.map((p) => (
-                <ProductCard key={p.id} p={p} />
+                <ProductCard key={p.id} p={p}/>
               ))}
             </div>
           )}
@@ -726,7 +526,7 @@ function FiltersPanel(props: {
                 }`}
               >
                 <div className="flex items-center gap-2">
-                  <StarRating value={r} />
+                  <StarRating value={r}/>
                   <span className="text-sm">і вище</span>
                 </div>
                 {minRating === r && <Badge variant="secondary">Обрано</Badge>}
@@ -799,18 +599,18 @@ function ProductCard({ p }: { p: Product }) {
 function ProductsSkeleton() {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {Array.from({ length: 8 }).map((_, i) => (
+      {Array.from({length: 8}).map((_, i) => (
         <Card key={i} className="rounded-2xl">
-          <Skeleton className="aspect-[4/3] w-full" />
+          <Skeleton className="aspect-[4/3] w-full"/>
           <CardHeader className="space-y-2">
-            <Skeleton className="h-5 w-3/4" />
-            <Skeleton className="h-3 w-1/2" />
+            <Skeleton className="h-5 w-3/4"/>
+            <Skeleton className="h-3 w-1/2"/>
           </CardHeader>
           <CardContent>
-            <Skeleton className="h-4 w-1/3" />
+            <Skeleton className="h-4 w-1/3"/>
           </CardContent>
           <CardFooter>
-            <Skeleton className="h-9 w-full" />
+            <Skeleton className="h-9 w-full"/>
           </CardFooter>
         </Card>
       ))}
@@ -835,3 +635,175 @@ function EmptyState({ onReset }: { onReset: () => void }) {
     </Card>
   );
 }
+
+
+const DEMO_PRODUCTS: Product[] = [
+  {
+    id: "p1",
+    title: "Mechanical Keyboard K8 Pro",
+    description: "Hot‑swappable, RGB, Gateron switches.",
+    price: 99,
+    rating: 4.6,
+    reviews: 312,
+    category: "Keyboards",
+    brand: "Keychron",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-07-18T10:00:00.000Z",
+  },
+  {
+    id: "p2",
+    title: "Razer Viper Mini SE",
+    description: "Ultralight gaming mouse for precision.",
+    price: 69,
+    rating: 4.4,
+    reviews: 154,
+    category: "Mice",
+    brand: "Razer",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-06-02T09:00:00.000Z",
+  },
+  {
+    id: "p3",
+    title: "Logitech MX Master 3S",
+    description: "Ergonomic productivity mouse with Flow.",
+    price: 119,
+    rating: 4.8,
+    reviews: 2894,
+    category: "Mice",
+    brand: "Logitech",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1587829741301-dc798b83add3?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-05-15T12:00:00.000Z",
+  },
+  {
+    id: "p4",
+    title: "ASUS ProArt 27",
+    description: "Color‑accurate 27″ 4K monitor for creators.",
+    price: 449,
+    rating: 4.7,
+    reviews: 673,
+    category: "Monitors",
+    brand: "ASUS",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1593640408182-31c70c8268f6?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-03-29T08:00:00.000Z",
+  },
+  {
+    id: "p5",
+    title: "MacBook Air M3 13",
+    description: "Silent performance, all‑day battery.",
+    price: 1199,
+    rating: 4.9,
+    reviews: 1031,
+    category: "Laptops",
+    brand: "Apple",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-02-10T10:00:00.000Z",
+  },
+  {
+    id: "p6",
+    title: "Google Pixel Buds Pro",
+    description: "ANC earbuds with multi‑point connectivity.",
+    price: 199,
+    rating: 4.3,
+    reviews: 840,
+    category: "Audio",
+    brand: "Google",
+    inStock: false,
+    image:
+      "https://images.unsplash.com/photo-1518443952241-04e2b0a7a0f8?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-01-20T14:00:00.000Z",
+  },
+  {
+    id: "p7",
+    title: "Sony WH‑1000XM5",
+    description: "Industry‑leading noise cancellation.",
+    price: 349,
+    rating: 4.8,
+    reviews: 5203,
+    category: "Audio",
+    brand: "Sony",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1518441902113-c1d3d4c4e34a?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2024-12-08T07:00:00.000Z",
+  },
+  {
+    id: "p8",
+    title: "Dell XPS 15",
+    description: "Premium 15″ laptop for power users.",
+    price: 1899,
+    rating: 4.6,
+    reviews: 943,
+    category: "Laptops",
+    brand: "Dell",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-04-21T11:30:00.000Z",
+  },
+  {
+    id: "p9",
+    title: "Magic Trackpad 2",
+    description: "Multi‑Touch surface for precise control.",
+    price: 129,
+    rating: 4.5,
+    reviews: 1320,
+    category: "Accessories",
+    brand: "Apple",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-06-10T16:00:00.000Z",
+  },
+  {
+    id: "p10",
+    title: "Razer BlackShark V2",
+    description: "Esports headset with THX Spatial Audio.",
+    price: 129,
+    rating: 4.2,
+    reviews: 410,
+    category: "Audio",
+    brand: "Razer",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1518441902113-c1d3d4c4e34a?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-07-05T18:00:00.000Z",
+  },
+  {
+    id: "p11",
+    title: "ASUS ROG Swift 32",
+    description: "Fast 4K gaming monitor 144Hz.",
+    price: 999,
+    rating: 4.7,
+    reviews: 267,
+    category: "Monitors",
+    brand: "ASUS",
+    inStock: false,
+    image:
+      "https://images.unsplash.com/photo-1593640408182-31c70c8268f6?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-08-01T10:00:00.000Z",
+  },
+  {
+    id: "p12",
+    title: "Logi MX Keys S",
+    description: "Low‑profile keyboard with smart backlight.",
+    price: 119,
+    rating: 4.6,
+    reviews: 1810,
+    category: "Keyboards",
+    brand: "Logitech",
+    inStock: true,
+    image:
+      "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?q=80&w=1200&auto=format&fit=crop",
+    createdAt: "2025-03-05T12:00:00.000Z",
+  },
+];

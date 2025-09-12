@@ -54,10 +54,28 @@ model Orders {
 }
 
 model Category {
+  id          String    @id @default(cuid())
+  title       String
+  description String
+  tag         String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  product     Product[]
+}
+
+model Product {
   id          String   @id @default(cuid())
   title       String
-  tag         String
   description String
+  tag         String
+  price       String
+  rating      String
+  reviews     String
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  brand       String
+  inStock     String
+  image       String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
