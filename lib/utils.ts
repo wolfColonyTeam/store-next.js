@@ -1,5 +1,5 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 import { CredentialsSignin } from "next-auth";
 
 export class CustomError extends CredentialsSignin {
@@ -12,6 +12,14 @@ export class CustomError extends CredentialsSignin {
 }
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
+  return twMerge(clsx(inputs));
 }
 
+/// home page content utils
+
+export const formatCurrency = (n: number) =>
+  new Intl.NumberFormat("uk-UA", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(n);

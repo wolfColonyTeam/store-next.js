@@ -7,7 +7,6 @@ type CreateUserType = { email: string; password: string; name: string };
 type updateUserType = { name: string };
 
 export const createUser = async (data: CreateUserType) => {
-  console.log(data, " data123");
   try {
     const { name, email, password } = data;
     if (!name.trim() || !email.trim() || password.length < 4) {
@@ -16,8 +15,6 @@ export const createUser = async (data: CreateUserType) => {
     const existing = await prisma.user.findFirst({
       where: { email: email.trim() },
     });
-
-    console.log(existing, " existing123");
 
     if (existing) {
       return { message: "User already exists", status: 409, success: false };
@@ -51,7 +48,6 @@ export const createUser = async (data: CreateUserType) => {
 };
 
 export const updateUser = async (formData: updateUserType, email: string) => {
-  console.log(formData, " data123");
   try {
     await prisma.user.update({
       where: { email },
@@ -106,11 +102,11 @@ export const getAllUsers = async () => {
 
 export const deleteUser = async (email: string) => {
   try {
-    await prisma.user.delete({ where: { email } });
-
+    await prisma.user.delete({ where: { email: email } });
     revalidatePath("/admin/users");
     return { message: "User deleted successfully", success: true };
   } catch (err) {
     console.error(err, " Error in deleteUser");
+    return { message: "Failed to delete user", success: false };
   }
 };

@@ -20,12 +20,13 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CircleX, PencilOff, UserPen } from "lucide-react";
+import { CircleX, PencilOff, Plus, UserPen } from "lucide-react";
 import React, { useState } from "react";
 import { getUserDataByEmail, updateUser } from "@/actions/users.action";
 import { toast } from "react-hot-toast";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone } from "lucide-react";
+import { DataPicker } from "@/components/profile/DataPicker";
 
 type ProfileUserType = Awaited<ReturnType<typeof getUserDataByEmail>>;
 
@@ -51,6 +52,7 @@ export function EditProfile({
     biography: user?.profile?.biography || "",
     phone: user?.profile?.phone || "",
     gender: user?.profile?.gender || "",
+    dateOfBirth: user?.profile?.dateOfBirth || null,
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -85,6 +87,11 @@ export function EditProfile({
 
     console.log("form submitted ", formData);
   };
+  const onHandleSetDate = (date: Date) => {
+    setFormData({ ...formData, dateOfBirth: date });
+  };
+
+  console.log(formData, " formData");
   console.log("EditProfile component render");
 
   return (
@@ -163,36 +170,47 @@ export function EditProfile({
               <div className="flex gap-1 items-center">
                 <Phone className="size-4" color="#7fa267" />
                 <span className="text-md">{user?.profile?.phone || ""}</span>
-                {isEditPhone ? (
-                  <CircleX
-                    onClick={() => setIsEditPhone(false)}
-                    className="size-5 ml-3 cursor-pointer"
-                    color="#7fa267"
-                  />
-                ) : (
-                  <PencilOff
-                    onClick={() => setIsEditPhone(true)}
-                    className="size-4 ml-3 cursor-pointer"
-                    color="#ee1717"
-                  />
+                {!isEditPhone && (
+                  <>
+                    {user?.profile?.phone ? (
+                      <PencilOff
+                        onClick={() => setIsEditPhone(true)}
+                        className="size-4 ml-3 cursor-pointer"
+                        color="#ee1717"
+                      />
+                    ) : (
+                      <Plus
+                        onClick={() => setIsEditPhone(true)}
+                        className="size-5 ml-3 cursor-pointer"
+                        color="#7fa267"
+                      />
+                    )}
+                  </>
                 )}
               </div>
               {isEditPhone && (
-                <Input
-                  id="phone"
-                  name="phone"
-                  defaultValue={user?.profile?.phone || ""}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                    setFormData((prev) => ({
-                      ...prev,
-                      [e.target.name]: e.target.value,
-                    }));
-                  }}
-                />
+                <div className="relative">
+                  <Input
+                    id="phone"
+                    name="phone"
+                    defaultValue={user?.profile?.phone || ""}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setFormData((prev) => ({
+                        ...prev,
+                        [e.target.name]: e.target.value,
+                      }));
+                    }}
+                  />
+                  <CircleX
+                    onClick={() => setIsEditPhone(false)}
+                    className="size-5 ml-3 cursor-pointer absolute right-2 top-2"
+                    color="#7fa267"
+                  />
+                </div>
               )}
             </div>
-            <div className="grid gap-2 grid-cols-3 mb-2">
-              <div className="flex gap-1 items-center">
+            <div className="grid gap-3 grid-cols-2 mb-2">
+              <div className="flex flex-col gap-2">
                 <Label className="mr-1">Gender</Label>
                 <Select
                   defaultValue={user?.profile?.gender || ""}
@@ -214,6 +232,10 @@ export function EditProfile({
                   </SelectContent>
                 </Select>
               </div>
+              <DataPicker
+                dayOfBirth={user?.profile?.dateOfBirth}
+                onHandleSetDate={onHandleSetDate}
+              />
             </div>
           </div>
           <DialogFooter>
